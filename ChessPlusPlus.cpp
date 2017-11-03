@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "ChessPlusPlus.h"
+#include "Pawn.h"
 
 using namespace std;
 
@@ -10,8 +11,10 @@ int main()
 {
 	Pawn pawn(2, 3, black);
 
-	cout << pawn.getColor() << endl;
-	cout << pawn.getPosition()[0] << " " << pawn.getPosition()[1] << endl;
+	cout << pawn.toString() << endl;
+	cout << pawn.isValidMove(2, 2, none) << endl;
+	pawn.move(2, 2);
+	cout << pawn.toString() << endl;
 
 	system("pause");
     return 0;

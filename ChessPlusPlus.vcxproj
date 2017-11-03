@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChessPlusPlus.cpp" />
+    <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
