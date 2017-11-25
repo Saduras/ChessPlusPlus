@@ -21,3 +21,8 @@ std::string Pawn::toString()
 {
 	return "Pawn (" + getColorString() + ") " + getPositonString();
 }
+
+std::string Pawn::toShortString()
+{
+	return (getColor() == white) ? "P" : "p";
+}

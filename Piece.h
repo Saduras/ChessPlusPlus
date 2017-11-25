@@ -39,7 +39,8 @@ public:
 		}
 	}
 
-	virtual std::string to_string() { return ""; }
+	virtual std::string toString() { return "??"; }
+	virtual std::string toShortString() { return "??"; }
 
 protected:
 	bool isOnBoard(int posX, int posY);

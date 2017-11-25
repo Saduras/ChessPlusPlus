@@ -3,20 +3,38 @@
 
 #include "stdafx.h"
 #include "ChessPlusPlus.h"
+#include "Board.h"
 #include "Pawn.h"
+#include "ChessConsoleView.h"
 
 using namespace std;
 
+void printPiece(Piece piece)
+{
+	std::cout << piece.toShortString();
+}
+
 int main()
 {
-	Pawn pawn(2, 3, black);
+	Board board{};
+	ChessConsoleView view{ board };
 
-	cout << pawn.toString() << endl;
-	cout << pawn.isValidMove(2, 2, none) << endl;
-	pawn.move(2, 2);
-	cout << pawn.toString() << endl;
+	//view.print();
+
+	//std::cout << "\n";
+
+	for (int x = 0; x < 8; x++)
+	{
+		Pawn whitePawn{ x, 1, Color::white };
+		board.placePieceAt(&whitePawn, x, 1);
+
+		Pawn blackPawn{ x, 6, Color::black };
+		board.placePieceAt(&blackPawn, x, 6);
+	}
+
+	view.print();
 
 	system("pause");
-    return 0;
+	return 0;
 }
 

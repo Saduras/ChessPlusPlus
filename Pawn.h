@@ -10,4 +10,5 @@ public:
 	bool isValidMove(int posX, int posY, Color owner);
 
 	std::string toString();
+	std::string toShortString();
 };
