@@ -34,9 +34,13 @@ Board::Board()
 // destructor
 Board::~Board()
 {
-	for (auto field : fields)
-		if (field)
-			delete field;
+	for (int i = 0; i < fields.size(); i++)
+		if (fields[i])
+		{
+			delete fields[i];
+			fields[i] = nullptr;
+		}
+			
 }
 
 Piece* Board::getPieceAt(int x, int y)
