@@ -30,8 +30,29 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChessPlusPlus.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Pieces\Bishop.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\King.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\Knight.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\Pawn.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\Piece.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\Pieces.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\Queen.h">
+      <Filter>Header Files\Pieces</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\Rook.h">
+      <Filter>Header Files\Pieces</Filter>
     </ClInclude>
     <ClInclude Include="Board.h">
       <Filter>Header Files</Filter>
@@ -39,11 +60,8 @@
     <ClInclude Include="ChessConsoleView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pieces\Pawn.h">
-      <Filter>Header Files\Pieces</Filter>
-    </ClInclude>
-    <ClInclude Include="Pieces\Piece.h">
-      <Filter>Header Files\Pieces</Filter>
+    <ClInclude Include="ChessPlusPlus.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,10 +77,25 @@
     <ClCompile Include="ChessConsoleView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pieces\Piece.cpp">
+    <ClCompile Include="Pieces\Bishop.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Pieces\King.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Pieces\Knight.cpp">
       <Filter>Source Files\Pieces</Filter>
     </ClCompile>
     <ClCompile Include="Pieces\Pawn.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Pieces\Piece.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Pieces\Queen.cpp">
+      <Filter>Source Files\Pieces</Filter>
+    </ClCompile>
+    <ClCompile Include="Pieces\Rook.cpp">
       <Filter>Source Files\Pieces</Filter>
     </ClCompile>
   </ItemGroup>

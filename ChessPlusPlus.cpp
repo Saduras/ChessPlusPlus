@@ -19,19 +19,6 @@ int main()
 	Board board{};
 	ChessConsoleView view{ board };
 
-	//view.print();
-
-	//std::cout << "\n";
-
-	for (int x = 0; x < 8; x++)
-	{
-		Pawn whitePawn{ x, 1, Color::white };
-		board.placePieceAt(&whitePawn, x, 1);
-
-		Pawn blackPawn{ x, 6, Color::black };
-		board.placePieceAt(&blackPawn, x, 6);
-	}
-
 	view.print();
 
 	system("pause");
