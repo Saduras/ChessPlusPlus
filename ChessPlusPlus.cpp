@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ChessPlusPlus.h"
 #include "Board.h"
-#include "Pawn.h"
+#include "Pieces/Pawn.h"
 #include "ChessConsoleView.h"
 
 using namespace std;

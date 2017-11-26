@@ -148,8 +148,8 @@
     <ClInclude Include="Board.h" />
     <ClInclude Include="ChessConsoleView.h" />
     <ClInclude Include="ChessPlusPlus.h" />
-    <ClInclude Include="Pawn.h" />
-    <ClInclude Include="Piece.h" />
+    <ClInclude Include="Pieces\Pawn.h" />
+    <ClInclude Include="Pieces\Piece.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -157,8 +157,8 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="ChessConsoleView.cpp" />
     <ClCompile Include="ChessPlusPlus.cpp" />
-    <ClCompile Include="Pawn.cpp" />
-    <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="Pieces\Pawn.cpp" />
+    <ClCompile Include="Pieces\Piece.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

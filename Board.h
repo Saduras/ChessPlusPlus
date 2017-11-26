@@ -1,7 +1,7 @@
 #pragma once
 
 #include "stdafx.h"
-#include "Piece.h"
+#include "Pieces/Piece.h"
 #include <array>
 
 class Board
