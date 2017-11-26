@@ -8,8 +8,8 @@ bool Pawn::isValidMove(int newX, int newY, Color owner)
 		return false;
 	}
 
-	int direction = getColor() == white ? 1 : -1;
-	Color opponent = getColor() == white ? black : white;
+	int direction = getColor() == WHITE ? 1 : -1;
+	Color opponent = getColor() == WHITE ? BLACK : WHITE;
 	int x = getPosition()[0];
 	int y = getPosition()[1];
 
@@ -24,5 +24,5 @@ std::string Pawn::toString()
 
 std::string Pawn::toShortString()
 {
-	return (getColor() == white) ? "P" : "p";
+	return (getColor() == WHITE) ? "P" : "p";
 }

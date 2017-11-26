@@ -14,5 +14,5 @@ std::string Bishop::toString()
 
 std::string Bishop::toShortString()
 {
-	return (getColor() == white) ? "B" : "b";
+	return (getColor() == WHITE) ? "B" : "b";
 }

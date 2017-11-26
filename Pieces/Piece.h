@@ -2,9 +2,9 @@
 
 enum Color
 {
-	none,
-	white,
-	black,
+	NONE,
+	WHITE,
+	BLACK,
 };
 
 class Piece
@@ -26,11 +26,11 @@ public:
 	inline std::string getColorString() {
 		switch (color)
 		{
-		case none:
+		case NONE:
 			return "none";
-		case white:
+		case WHITE:
 			return "white";
-		case black:
+		case BLACK:
 			return "black";
 		default:
 			return "unkown";

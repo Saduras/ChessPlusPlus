@@ -14,5 +14,5 @@ std::string Queen::toString()
 
 std::string Queen::toShortString()
 {
-	return (getColor() == white) ? "Q" : "q";
+	return (getColor() == WHITE) ? "Q" : "q";
 }

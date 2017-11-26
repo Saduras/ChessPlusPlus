@@ -12,6 +12,7 @@ public:
 
 	Piece* getPieceAt(int x, int y);
 	void placePieceAt(Piece *const piece, int x, int y);
+	bool movePiece(int fromX, int fromY, int toX, int toY);
 
 private:
 	static std::array<Piece*, 64> fields;

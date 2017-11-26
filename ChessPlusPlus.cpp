@@ -3,23 +3,12 @@
 
 #include "stdafx.h"
 #include "ChessPlusPlus.h"
-#include "Board.h"
-#include "Pieces/Pawn.h"
-#include "ChessConsoleView.h"
-
-using namespace std;
-
-void printPiece(Piece piece)
-{
-	std::cout << piece.toShortString();
-}
+#include "Match.h"
 
 int main()
 {
-	Board board{};
-	ChessConsoleView view{ board };
-
-	view.print();
+	Match match{};
+	match.start();
 
 	system("pause");
 	return 0;

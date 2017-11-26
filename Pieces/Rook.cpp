@@ -14,5 +14,5 @@ std::string Rook::toString()
 
 std::string Rook::toShortString()
 {
-	return (getColor() == white) ? "R" : "r";
+	return (getColor() == WHITE) ? "R" : "r";
 }

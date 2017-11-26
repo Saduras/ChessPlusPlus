@@ -14,5 +14,5 @@ std::string Knight::toString()
 
 std::string Knight::toShortString()
 {
-	return (getColor() == white) ? "N" : "n";
+	return (getColor() == WHITE) ? "N" : "n";
 }

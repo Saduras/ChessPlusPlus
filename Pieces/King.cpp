@@ -14,5 +14,5 @@ std::string King::toString()
 
 std::string King::toShortString()
 {
-	return (getColor() == white) ? "K" : "k";
+	return (getColor() == WHITE) ? "K" : "k";
 }
