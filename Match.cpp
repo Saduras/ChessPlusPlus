@@ -35,9 +35,8 @@ void Match::start()
 			std::getline(std::cin, input);
 			success = parseInput(input, positions);
 
-		} while (!success);
+		} while (!success || !board.isValidMove(positions[0], positions[1]));
 
-		// positons stores start (x,y) in 0,1 and end (x,y) in 2,3
 		board.movePiece(positions[0], positions[1]);
 		whosTurn = whosTurn == Color::WHITE ? Color::BLACK : Color::WHITE;
 	}

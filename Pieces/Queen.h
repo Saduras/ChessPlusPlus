@@ -8,7 +8,7 @@ class Queen : public Piece
 public:
 	using Piece::Piece;
 
-	bool isValidMove(int posX, int posY, Color owner);
+	std::vector<Position> getMovesFor(Position startPos);
 
 	std::string toString();
 	std::string toShortString();

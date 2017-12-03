@@ -1,21 +1,20 @@
 #include "stdafx.h"
 #include "Piece.h"
 
-Piece::Piece(int posX, int posY, Color col)
+Piece::Piece(Color col)
 {
-	position[0] = posX;
-	position[1] = posY;
 	color = col;
 }
 
-bool Piece::isOnBoard(int posX, int posY)
+bool Piece::isValidMove(Position from, Position to)
 {
-	return -1 < posX && posX < 8
-		&& -1 < posY && posY < 8;
-}
+	auto moves = getMovesFor(from);
 
-void Piece::move(int posX, int posY)
-{
-	position[0] = posX;
-	position[1] = posY;
+	for (unsigned int i = 0; i < moves.size(); i++)
+	{
+		if (moves[i] == to)
+			return true;
+	}
+
+	return false;
 }
