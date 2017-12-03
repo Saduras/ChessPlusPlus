@@ -3,10 +3,25 @@
 
 std::vector<Position> Pawn::getMovesFor(Position startPos)
 {
+	std::vector<Position> vector{};
+
 	if (getColor() == Color::WHITE)
-		return std::vector<Position>{ Position{ startPos.x, startPos.y + 1 } };
+	{
+		if(startPos.y < 7)
+			vector.push_back(Position{ startPos.x, startPos.y + 1 });
+
+		if(startPos.y == 1)
+			vector.push_back(Position{ startPos.x, startPos.y + 2 });
+	}
 	else
-		return std::vector<Position>{ Position{ startPos.x + 1, startPos.y } };
+	{
+		if(startPos.y > 0)
+			vector.push_back(Position{ startPos.x, startPos.y - 1 });
+
+		if (startPos.y == 6)
+			vector.push_back(Position{ startPos.x, startPos.y - 2 });
+	}
+	return vector;
 }
 
 std::string Pawn::toString()
