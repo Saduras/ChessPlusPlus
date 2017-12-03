@@ -16,7 +16,7 @@ void Match::start()
 	Board board{};
 	ChessConsoleView view{ board };
 
-	Color whosTurn = Color::WHITE;
+	Color currentPlayerColor = Color::WHITE;
 
 	while (state == MatchState::ONGOING)
 	{
@@ -26,7 +26,7 @@ void Match::start()
 		bool success = false;
 		do
 		{
-			if (whosTurn == Color::WHITE)
+			if (currentPlayerColor == Color::WHITE)
 				std::cout << "WHITEs turn:";
 			else
 				std::cout << "BLACKs turn:";
@@ -35,10 +35,10 @@ void Match::start()
 			std::getline(std::cin, input);
 			success = parseInput(input, positions);
 
-		} while (!success || !board.isValidMove(positions[0], positions[1]));
+		} while (!success || !board.isValidMove(positions[0], positions[1], currentPlayerColor));
 
 		board.movePiece(positions[0], positions[1]);
-		whosTurn = whosTurn == Color::WHITE ? Color::BLACK : Color::WHITE;
+		currentPlayerColor = (currentPlayerColor == Color::WHITE) ? Color::BLACK : Color::WHITE;
 	}
 }
 

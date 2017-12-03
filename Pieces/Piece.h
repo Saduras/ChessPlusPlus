@@ -3,6 +3,8 @@
 #include "Position.h"
 #include <vector>
 
+class Board;
+
 enum Color
 {
 	NONE,
@@ -15,8 +17,8 @@ class Piece
 public:
 	explicit Piece(Color color);
 
-	bool isValidMove(Position from, Position to);
-	virtual std::vector<Position> getMovesFor(Position startPos) = 0;
+	bool isValidMove(Position from, Position to, Board &board);
+	virtual std::vector<Position> getMovesFor(Position startPos, Board &board) = 0;
 
 	inline Color getColor() { return color; }
 	inline std::string getColorString() {

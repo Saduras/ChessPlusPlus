@@ -40,8 +40,7 @@ Board::~Board()
 		{
 			delete fields[i];
 			fields[i] = nullptr;
-		}
-			
+		}	
 }
 
 Piece* Board::getPieceAt(Position pos)
@@ -54,12 +53,12 @@ void Board::placePieceAt(Piece *const piece, Position pos)
 	fields[getFieldIndex(pos)] = piece;
 }
 
-bool Board::isValidMove(Position from, Position to)
+bool Board::isValidMove(Position from, Position to, Color playerColor)
 {
 	Piece *piece = getPieceAt(from);
 
-	if (piece)
-		return piece->isValidMove(from, to);
+	if (piece && piece->getColor() == playerColor)
+		return piece->isValidMove(from, to, *this);
 	else 
 		return false;
 }

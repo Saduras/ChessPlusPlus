@@ -1,26 +1,56 @@
 #include "stdafx.h"
 #include "Pawn.h"
+#include "Board.h"
 
-std::vector<Position> Pawn::getMovesFor(Position startPos)
+static Position moveDirs[2]
+{
+	Position{0, 1},
+	Position{0, -1},
+};
+
+static Position attackDirOffsets[2]
+{
+	Position{1, 0},
+	Position{-1, 0}
+};
+
+std::vector<Position> Pawn::getMovesFor(Position pos, Board &board)
 {
 	std::vector<Position> vector{};
 
+	Position moveDir;
+	int startY;
 	if (getColor() == Color::WHITE)
 	{
-		if(startPos.y < 7)
-			vector.push_back(Position{ startPos.x, startPos.y + 1 });
-
-		if(startPos.y == 1)
-			vector.push_back(Position{ startPos.x, startPos.y + 2 });
+		moveDir = moveDirs[0];
+		startY = 1;
 	}
 	else
 	{
-		if(startPos.y > 0)
-			vector.push_back(Position{ startPos.x, startPos.y - 1 });
-
-		if (startPos.y == 6)
-			vector.push_back(Position{ startPos.x, startPos.y - 2 });
+		moveDir = moveDirs[1];
+		startY = 6;
 	}
+
+	// normal move
+	auto newPos = pos + moveDir;
+	if(Position::isOnBoard(newPos) && !board.getPieceAt(newPos))
+		vector.push_back(newPos);
+
+	// start move
+	newPos = pos + moveDir + moveDir;
+	if (pos.y == startY && Position::isOnBoard(newPos) && !board.getPieceAt(newPos))
+		vector.push_back(newPos);
+	
+	// attack moves
+	for (int i = 0; i < 2; i++)
+	{
+		newPos = pos + moveDir + attackDirOffsets[i];
+		auto targetPiece = board.getPieceAt(newPos);
+
+		if (Position::isOnBoard(newPos) && targetPiece && targetPiece->getColor() != this->getColor())
+			vector.push_back(newPos);
+	}
+
 	return vector;
 }
 

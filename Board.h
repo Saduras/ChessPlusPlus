@@ -13,7 +13,7 @@ public:
 
 	Piece* getPieceAt(Position pos);
 	void placePieceAt(Piece *const piece, Position pos);
-	bool isValidMove(Position from, Position to);
+	bool isValidMove(Position from, Position to, Color playerColor);
 	void movePiece(Position from, Position to);
 
 private:

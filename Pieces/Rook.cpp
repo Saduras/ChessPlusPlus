@@ -1,21 +1,40 @@
 #include "stdafx.h"
 #include "Rook.h"
+#include "Board.h"
 
-std::vector<Position> Rook::getMovesFor(Position startPos)
+static Position offsets[4]{
+	Position{ 1, 0 },
+	Position{ 0, -1 },
+	Position{ 1, -0 },
+	Position{ 0, 1 }
+};
+
+
+std::vector<Position> Rook::getMovesFor(Position pos, Board &board)
 {
 	std::vector<Position> vector{};
 
-	for (int x = startPos.x + 1; x < 8; x++)
-		vector.push_back( Position{ x, startPos.y } );
+	int directionCount = sizeof(offsets) / sizeof(offsets[0]);
+	for (int i = 0; i < directionCount; i++)
+	{
+		auto newPos = pos + offsets[i];
+		while (Position::isOnBoard(newPos))
+		{
+			auto other = board.getPieceAt(newPos);
+			if (other)
+			{
+				if (other->getColor() == this->getColor())
+					vector.push_back(newPos);
 
-	for (int x = startPos.x - 1; x >= 0; x--)
-		vector.push_back(Position{ x, startPos.y });
-
-	for (int y = startPos.y + 1; y < 8; y++)
-		vector.push_back(Position{ startPos.x, y });
-
-	for (int y = startPos.y - 1; y >= 0; y--)
-		vector.push_back(Position{ startPos.x, y });
+				break;
+			}
+			else
+			{
+				vector.push_back(newPos);
+				newPos += offsets[i];
+			}
+		}
+	}
 
 	return vector;
 }
