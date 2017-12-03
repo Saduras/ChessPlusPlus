@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Match.h"
-#include "Board.h"
 #include "ChessConsoleView.h"
 #include "Piece.h"
 #include <iostream>
@@ -23,7 +22,7 @@ void Match::start()
 	{
 		view.print();
 
-		int positions[4]{ 0, 0, 0, 0 };
+		Position positions[2]{ Position{0, 0}, Position{0, 0} };
 		bool success = false;
 		do
 		{
@@ -39,28 +38,18 @@ void Match::start()
 		} while (!success);
 
 		// positons stores start (x,y) in 0,1 and end (x,y) in 2,3
-		board.movePiece(positions[0], positions[1], positions[2], positions[3]);
+		board.movePiece(positions[0], positions[1]);
 		whosTurn = whosTurn == Color::WHITE ? Color::BLACK : Color::WHITE;
 	}
 }
 
-bool Match::parseInput(const std::string input, int* positions)
+bool Match::parseInput(const std::string input, Position* positions)
 {
 	if (input.length() < 5)
 		return false;
 
-	positions[0] = input[0] - 'a';
-	positions[1] = input[1] - '1';
-	positions[2] = input[3] - 'a';
-	positions[3] = input[4] - '1';
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (positions[i] < 0 || positions[i] > 7)
-		{
-			return false;
-		}
-	}
+	positions[0] = { input[0] - 'a', input[1] - '1' };
+	positions[1] = { input[3] - 'a', input[4] - '1' };
 	
-	return true;
+	return Position::isOnBoard( positions[0] ) && Position::isOnBoard( positions[1] );
 }

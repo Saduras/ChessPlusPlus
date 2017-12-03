@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Board.h"
+
 enum class MatchState
 {
 	UNSTARTED,
@@ -17,5 +19,5 @@ public:
 private:
 	MatchState state{ MatchState::UNSTARTED };
 
-	bool parseInput(const std::string input, int* positions);
+	bool parseInput(const std::string input, Position* positions);
 };

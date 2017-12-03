@@ -17,7 +17,7 @@ void ChessConsoleView::print()
 		*output += " " + std::to_string(y + 1) + "|";
 		for (int x = 0; x < 8; x++)
 		{
-			Piece *piece = board.getPieceAt(x, y);
+			Piece *piece = board.getPieceAt(Position{ x, y });
 
 			if (piece)
 			{
