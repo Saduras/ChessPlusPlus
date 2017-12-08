@@ -3,27 +3,26 @@
 
 // public
 
-// constructor
-Board::Board()
+void Board::setupWithDefault()
 {
 	// Standard setup
-	this->placePieceAt(new Rook   { Color::WHITE }, Position{ 0, 0 });
-	this->placePieceAt(new Knight { Color::WHITE }, Position{ 1, 0 });
-	this->placePieceAt(new Bishop { Color::WHITE }, Position{ 2, 0 });
-	this->placePieceAt(new Queen  { Color::WHITE }, Position{ 3, 0 });
-	this->placePieceAt(new King   { Color::WHITE }, Position{ 4, 0 });
-	this->placePieceAt(new Bishop { Color::WHITE }, Position{ 5, 0 });
-	this->placePieceAt(new Knight { Color::WHITE }, Position{ 6, 0 });
-	this->placePieceAt(new Rook   { Color::WHITE }, Position{ 7, 0 });
-													 			    
-	this->placePieceAt(new Rook   { Color::BLACK }, Position{ 0, 7 });
-	this->placePieceAt(new Knight { Color::BLACK }, Position{ 1, 7 });
-	this->placePieceAt(new Bishop { Color::BLACK }, Position{ 2, 7 });
-	this->placePieceAt(new Queen  { Color::BLACK }, Position{ 3, 7 });
-	this->placePieceAt(new King   { Color::BLACK }, Position{ 4, 7 });
-	this->placePieceAt(new Bishop { Color::BLACK }, Position{ 5, 7 });
-	this->placePieceAt(new Knight { Color::BLACK }, Position{ 6, 7 });
-	this->placePieceAt(new Rook   { Color::BLACK }, Position{ 7, 7 });
+	this->placePieceAt(new Rook{ Color::WHITE }, Position{ 0, 0 });
+	this->placePieceAt(new Knight{ Color::WHITE }, Position{ 1, 0 });
+	this->placePieceAt(new Bishop{ Color::WHITE }, Position{ 2, 0 });
+	this->placePieceAt(new Queen{ Color::WHITE }, Position{ 3, 0 });
+	this->placePieceAt(new King{ Color::WHITE }, Position{ 4, 0 });
+	this->placePieceAt(new Bishop{ Color::WHITE }, Position{ 5, 0 });
+	this->placePieceAt(new Knight{ Color::WHITE }, Position{ 6, 0 });
+	this->placePieceAt(new Rook{ Color::WHITE }, Position{ 7, 0 });
+
+	this->placePieceAt(new Rook{ Color::BLACK }, Position{ 0, 7 });
+	this->placePieceAt(new Knight{ Color::BLACK }, Position{ 1, 7 });
+	this->placePieceAt(new Bishop{ Color::BLACK }, Position{ 2, 7 });
+	this->placePieceAt(new Queen{ Color::BLACK }, Position{ 3, 7 });
+	this->placePieceAt(new King{ Color::BLACK }, Position{ 4, 7 });
+	this->placePieceAt(new Bishop{ Color::BLACK }, Position{ 5, 7 });
+	this->placePieceAt(new Knight{ Color::BLACK }, Position{ 6, 7 });
+	this->placePieceAt(new Rook{ Color::BLACK }, Position{ 7, 7 });
 
 	for (int x = 0; x < 8; x++)
 	{
@@ -83,3 +82,4 @@ int Board::getFieldIndex(Position pos)
 {
 	return pos.x + pos.y * 8;
 }
+

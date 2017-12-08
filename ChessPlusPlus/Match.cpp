@@ -14,6 +14,7 @@ void Match::start()
 
 	state = MatchState::ONGOING;
 	Board board{};
+	board.setupWithDefault();
 	ChessConsoleView view{ board };
 
 	Color currentPlayerColor = Color::WHITE;

@@ -8,8 +8,9 @@
 class Board
 {
 public:
-	Board();
 	~Board();
+
+	void setupWithDefault();
 
 	Piece* getPieceAt(Position pos);
 	void placePieceAt(Piece *const piece, Position pos);
