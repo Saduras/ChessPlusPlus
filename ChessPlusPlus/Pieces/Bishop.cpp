@@ -22,7 +22,7 @@ std::vector<Position> Bishop::getMovesFor(Position pos, Board &board)
 			auto other = board.getPieceAt(newPos);
 			if (other)
 			{
-				if (other->getColor() == this->getColor())
+				if (other->getColor() != this->getColor())
 					vector.push_back(newPos);
 
 				break;
