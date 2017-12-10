@@ -5,7 +5,7 @@
 static Position offsets[4]{
 	Position{ 1, 0 },
 	Position{ 0, -1 },
-	Position{ 1, -0 },
+	Position{ -1, 0 },
 	Position{ 0, 1 }
 };
 
@@ -23,7 +23,7 @@ std::vector<Position> Rook::getMovesFor(Position pos, Board &board)
 			auto other = board.getPieceAt(newPos);
 			if (other)
 			{
-				if (other->getColor() == this->getColor())
+				if (other->getColor() != this->getColor())
 					vector.push_back(newPos);
 
 				break;
