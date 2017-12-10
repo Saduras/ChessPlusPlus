@@ -122,5 +122,8 @@
     <ClCompile Include="PawnTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="KnightTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
