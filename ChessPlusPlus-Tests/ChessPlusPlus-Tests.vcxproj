@@ -154,11 +154,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\ChessPlusPlus\Board.h" />
+    <ClInclude Include="..\ChessPlusPlus\ChessConsoleView.h" />
+    <ClInclude Include="..\ChessPlusPlus\Match.h" />
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Bishop.h" />
+    <ClInclude Include="..\ChessPlusPlus\Pieces\King.h" />
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Knight.h" />
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Pawn.h" />
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Piece.h" />
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Pieces.h" />
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Queen.h" />
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Rook.h" />
+    <ClInclude Include="..\ChessPlusPlus\Position.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestUtils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ChessPlusPlus\Board.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\ChessConsoleView.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Match.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Bishop.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Pieces\King.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Knight.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Pawn.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Piece.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Queen.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Rook.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Position.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
