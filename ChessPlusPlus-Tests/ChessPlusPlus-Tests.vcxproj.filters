@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Main Project">
+      <UniqueIdentifier>{606cb5e1-a491-40be-b4c9-f428f4c9c576}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MainProject">
+      <UniqueIdentifier>{8e40c289-033f-4c9c-adc0-0df5570fe7e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -25,40 +31,40 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\ChessPlusPlus\Pieces\Bishop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Pieces\King.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Pieces\Knight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Pieces\Pawn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Pieces\Piece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Pieces\Pieces.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Pieces\Queen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Pieces\Rook.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\MainProject</Filter>
     </ClInclude>
     <ClInclude Include="..\ChessPlusPlus\Board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Match.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Position.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\MainProject</Filter>
     </ClInclude>
     <ClInclude Include="..\ChessPlusPlus\ChessConsoleView.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Pieces\King.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Knight.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Match.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Pawn.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Piece.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Pieces.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Position.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Queen.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Pieces\Rook.h">
+      <Filter>Header Files\MainProject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,37 +77,40 @@
     <ClCompile Include="TestUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Pieces\Bishop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Pieces\King.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Pieces\Knight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Pieces\Pawn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Pieces\Piece.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Pieces\Queen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Pieces\Rook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\ChessPlusPlus\Board.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Main Project</Filter>
     </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Match.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Position.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Bishop.cpp">
+      <Filter>Source Files\Main Project</Filter>
     </ClCompile>
     <ClCompile Include="..\ChessPlusPlus\ChessConsoleView.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Pieces\King.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Knight.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Match.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Pawn.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Piece.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Position.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Rook.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Pieces\Queen.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="RookTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
