@@ -183,6 +183,7 @@
     <ClCompile Include="..\ChessPlusPlus\Pieces\Rook.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Position.cpp" />
     <ClCompile Include="KingTests.cpp" />
+    <ClCompile Include="QueenTests.cpp" />
     <ClCompile Include="RookTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
