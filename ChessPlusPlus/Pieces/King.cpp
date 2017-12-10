@@ -20,12 +20,14 @@ std::vector<Position> King::getMovesFor(Position startPos, Board &board)
 	for (int i = 0; i < 8; i++)
 	{
 		auto newPos = Position{ startPos.x + offsets[i].x, startPos.y + offsets[i].y };
-		auto targetPiece = board.getPieceAt(newPos);
 
-		if (Position::isOnBoard(newPos)
-			&& (targetPiece == nullptr || targetPiece->getColor() != this->getColor()))
+		if (Position::isOnBoard(newPos))
 		{
-			vector.push_back(newPos);
+			auto targetPiece = board.getPieceAt(newPos);
+			if(targetPiece == nullptr || targetPiece->getColor() != this->getColor())
+			{
+				vector.push_back(newPos);
+			}
 		}
 	}
 
