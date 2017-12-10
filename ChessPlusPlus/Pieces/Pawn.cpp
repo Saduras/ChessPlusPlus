@@ -45,10 +45,13 @@ std::vector<Position> Pawn::getMovesFor(Position pos, Board &board)
 	for (int i = 0; i < 2; i++)
 	{
 		newPos = pos + moveDir + attackDirOffsets[i];
-		auto targetPiece = board.getPieceAt(newPos);
 
-		if (Position::isOnBoard(newPos) && targetPiece && targetPiece->getColor() != this->getColor())
-			vector.push_back(newPos);
+		if (Position::isOnBoard(newPos))
+		{
+			auto targetPiece = board.getPieceAt(newPos);
+			if (targetPiece && targetPiece->getColor() != this->getColor())
+				vector.push_back(newPos);
+		}
 	}
 
 	return vector;
