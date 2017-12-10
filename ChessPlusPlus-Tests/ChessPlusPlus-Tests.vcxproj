@@ -183,6 +183,7 @@
     <ClCompile Include="..\ChessPlusPlus\Pieces\Rook.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Position.cpp" />
     <ClCompile Include="KingTests.cpp" />
+    <ClCompile Include="PawnTests.cpp" />
     <ClCompile Include="QueenTests.cpp" />
     <ClCompile Include="RookTests.cpp" />
     <ClCompile Include="stdafx.cpp">
