@@ -57,16 +57,16 @@
     <ClInclude Include="Board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChessConsoleView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChessPlusPlus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Match.h">
+    <ClInclude Include="Position.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Position.h">
+    <ClInclude Include="ChessWindowView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -78,9 +78,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ChessConsoleView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pieces\Bishop.cpp">
@@ -104,10 +101,13 @@
     <ClCompile Include="Pieces\Rook.cpp">
       <Filter>Source Files\Pieces</Filter>
     </ClCompile>
-    <ClCompile Include="Match.cpp">
+    <ClCompile Include="Position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Position.cpp">
+    <ClCompile Include="ChessWindowView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

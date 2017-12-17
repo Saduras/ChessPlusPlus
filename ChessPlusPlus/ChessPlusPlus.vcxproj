@@ -156,9 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
-    <ClInclude Include="ChessConsoleView.h" />
     <ClInclude Include="ChessPlusPlus.h" />
-    <ClInclude Include="Match.h" />
+    <ClInclude Include="ChessWindowView.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Pieces\Bishop.h" />
     <ClInclude Include="Pieces\King.h" />
     <ClInclude Include="Pieces\Knight.h" />
@@ -173,9 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
-    <ClCompile Include="ChessConsoleView.cpp" />
     <ClCompile Include="ChessPlusPlus.cpp" />
-    <ClCompile Include="Match.cpp" />
+    <ClCompile Include="ChessWindowView.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Pieces\Bishop.cpp" />
     <ClCompile Include="Pieces\King.cpp" />
     <ClCompile Include="Pieces\Knight.cpp" />
