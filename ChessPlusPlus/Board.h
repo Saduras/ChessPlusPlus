@@ -16,9 +16,10 @@ public:
 	void placePieceAt(Piece *const piece, Position pos);
 	bool isValidMove(Position from, Position to, Color playerColor);
 	void movePiece(Position from, Position to);
+	void removePiece(Position pos);
 
 private:
-	static std::array<Piece*, 64> fields;
+	std::array<Piece*, 64> fields{};
 
 	int getFieldIndex(Position pos);
 };

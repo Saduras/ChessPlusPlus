@@ -11,6 +11,9 @@ public:
 
 	void run();
 
+	void onRemovePiece(Piece* removedPiece);
+	void onMovePiece(Piece* movedPiece, Position newPos);
+
 private:
 	Game *game;
 
@@ -18,9 +21,10 @@ private:
 	sf::Texture boardTexture{};
 
 	sf::Sprite boardSprite{};
-	std::vector<sf::Sprite> pieceSprites{};
+	std::map<Piece*, sf::Sprite> pieceSprites{};
 	sf::RenderWindow window{ sf::VideoMode{ 800, 800 }, "ChessPlusPlus" };
 	sf::Sprite *dragSprite = nullptr;
+	sf::Vector2f dragStart;
 	int dx = 0;
 	int dy = 0;
 

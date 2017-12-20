@@ -2,6 +2,15 @@
 #include "Board.h"
 
 // public
+Board::~Board()
+{
+	for (unsigned int i = 0; i < fields.size(); i++)
+		if (fields[i])
+		{
+			delete fields[i];
+			fields[i] = nullptr;
+		}
+}
 
 void Board::setupWithDefault()
 {
@@ -31,17 +40,6 @@ void Board::setupWithDefault()
 	}
 }
 
-// destructor
-Board::~Board()
-{
-	for (unsigned int i = 0; i < fields.size(); i++)
-		if (fields[i])
-		{
-			delete fields[i];
-			fields[i] = nullptr;
-		}	
-}
-
 Piece* Board::getPieceAt(Position pos)
 {
 	return fields.at(getFieldIndex(pos));
@@ -65,19 +63,18 @@ bool Board::isValidMove(Position from, Position to, Color playerColor)
 void Board::movePiece(Position from, Position to)
 {
 	Piece *piece = getPieceAt(from);
+	fields[getFieldIndex(from)] = nullptr;
+	fields[getFieldIndex(to)] = piece;
+}
 
-	// destroy piece at target field
-	int targetIndex = getFieldIndex(to);
+void Board::removePiece(Position pos)
+{
+	int targetIndex = getFieldIndex(pos);
 	if (fields[targetIndex])
 		delete fields[targetIndex];
-	// move piece
-	fields[getFieldIndex(from)] = nullptr;
-	fields[targetIndex] = piece;
 }
 
 // private
-std::array<Piece*, 64> Board::fields{};
-
 int Board::getFieldIndex(Position pos)
 {
 	return pos.x + pos.y * 8;
