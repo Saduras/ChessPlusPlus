@@ -14,10 +14,17 @@ void Game::start()
 	currentPlayer = Color::WHITE;
 }
 
+bool isRunning(Game *game)
+{
+	return game->getState() == GameState::ONGOING 
+		|| game->getState() == GameState::CHECK_WHITE 
+		|| game->getState() == GameState::CHECK_BLACK;
+}
+
 bool Game::doMove(Position from, Position to)
 {
 	bool isValid = board.isValidMove(from, to, currentPlayer);
-	if (isValid && state == GameState::ONGOING)
+	if (isValid && isRunning(this))
 	{
 		Piece *toRemove = board.getPieceAt(to);
 		if (toRemove)
@@ -33,6 +40,12 @@ bool Game::doMove(Position from, Position to)
 		board.movePiece(from, to);
 
 		currentPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
+
+		if (isCheckmate(currentPlayer))
+		{
+			state = (currentPlayer == Color::WHITE) ? GameState::CHECKMATE_WHITE : GameState::CHECKMATE_BLACK;
+			std::cout << ((currentPlayer == Color::WHITE) ? "Black wins!" : "White wins!") << std::endl;
+		}
 	}
 	return isValid;
 }

@@ -112,10 +112,16 @@ void ChessWindowView::run()
 
 	while (window.isOpen())
 	{
-		Event event;
-		while (window.pollEvent(event))
+		if (game->getState() == GameState::CHECKMATE_WHITE)
+			window.setTitle("Black wins!");
+		else if (game->getState() == GameState::CHECKMATE_BLACK)
+			window.setTitle("White wins!");
 		{
-			handleEvent(event);
+			Event event;
+			while (window.pollEvent(event))
+			{
+				handleEvent(event);
+			}
 		}
 
 		// draw
