@@ -45,7 +45,24 @@ namespace ChessPlusPlusTests
 			Assert::IsTrue(game.isCheck(Color::BLACK), L"Exspected black to be check.");
 		}
 
-		TEST_METHOD(GameCheckmateTest)
+		TEST_METHOD(GameCheckmateCornerTest)
+		{
+			// Arrange
+			Game game{};
+			game.start();
+
+			// Act
+			Board *board = game.getBoard();
+			board->clear();
+			board->placePieceAt(new King(Color::WHITE), Position{ 0,0 });
+			board->placePieceAt(new Rook(Color::BLACK), Position{ 1,4 });
+			board->placePieceAt(new Queen(Color::BLACK), Position{ 1,1 });
+
+			// Assert
+			Assert::IsTrue(game.isCheckmate(Color::WHITE), L"Exspected white to be checkmate.");
+		}
+
+		TEST_METHOD(GameCheckmateSurroundedTest)
 		{
 			// Arrange
 			Game game{};

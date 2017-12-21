@@ -69,10 +69,18 @@ bool Game::isCheckmate(Color playerColor)
 
 	bool isCheck = board.isThreatenedBy(kingPos, opponentColor);
 
+	// temporary remove king from board
+	// this is for detect cases where threat changes by moving the king
+	auto king = board.getPieceAt(kingPos);
+	board.placePieceAt(nullptr, kingPos);
+
 	bool hasValidMove = false;
-	auto moves = board.getPieceAt(kingPos)->getMovesFor(kingPos, board);
+	auto moves = king->getMovesFor(kingPos, board);
 	for (auto move : moves)
 		hasValidMove |= !board.isThreatenedBy(move, opponentColor);
+
+	// restore king on board
+	board.placePieceAt(king, kingPos);
 
 	return isCheck && !hasValidMove;
 }
