@@ -4,12 +4,7 @@
 // public
 Board::~Board()
 {
-	for (unsigned int i = 0; i < fields.size(); i++)
-		if (fields[i])
-		{
-			delete fields[i];
-			fields[i] = nullptr;
-		}
+	clear();
 }
 
 void Board::setupWithDefault()
@@ -56,8 +51,29 @@ bool Board::isValidMove(Position from, Position to, Color playerColor)
 
 	if (piece && piece->getColor() == playerColor)
 		return piece->isValidMove(from, to, *this);
-	else 
+	else
 		return false;
+}
+
+bool Board::isThreatenedBy(Position targetPos, Color playerColor)
+{
+	for (int x = 0; x < 8; x++)
+	{
+		for (int y = 0; y < 8; y++)
+		{
+			Position pos{ x, y };
+			auto piece = getPieceAt(pos);
+			if (piece && piece->getColor() == playerColor)
+			{
+				auto moves = piece->getMovesFor(pos, *this);
+				if (std::find(moves.begin(), moves.end(), targetPos) !=  moves.end())
+				{					
+					return true;
+				}
+			}
+		}
+	}
+	return false;
 }
 
 void Board::movePiece(Position from, Position to)
@@ -67,11 +83,24 @@ void Board::movePiece(Position from, Position to)
 	fields[getFieldIndex(to)] = piece;
 }
 
-void Board::removePiece(Position pos)
+void Board::removePieceAt(Position pos)
 {
 	int targetIndex = getFieldIndex(pos);
 	if (fields[targetIndex])
+	{
 		delete fields[targetIndex];
+		fields[targetIndex] = nullptr;
+	}
+}
+
+void Board::clear()
+{
+	for (unsigned int i = 0; i < fields.size(); i++)
+		if (fields[i])
+		{
+			delete fields[i];
+			fields[i] = nullptr;
+		}
 }
 
 // private

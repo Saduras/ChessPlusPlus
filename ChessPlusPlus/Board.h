@@ -14,9 +14,14 @@ public:
 
 	Piece* getPieceAt(Position pos);
 	void placePieceAt(Piece *const piece, Position pos);
+
 	bool isValidMove(Position from, Position to, Color playerColor);
+	bool isThreatenedBy(Position targetPos, Color playerColor);
+
 	void movePiece(Position from, Position to);
-	void removePiece(Position pos);
+	void removePieceAt(Position pos);
+
+	void clear();
 
 private:
 	std::array<Piece*, 64> fields{};

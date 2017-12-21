@@ -3,7 +3,7 @@
 #include "Board.h"
 
 static Position offsets[8]{
-	Position{ 1, 0},
+	Position{ 1, 0 },
 	Position{ 1, -1 },
 	Position{ 0, -1 },
 	Position{ -1, -1 },
@@ -24,7 +24,7 @@ std::vector<Position> King::getMovesFor(Position startPos, Board &board)
 		if (Position::isOnBoard(newPos))
 		{
 			auto targetPiece = board.getPieceAt(newPos);
-			if(targetPiece == nullptr || targetPiece->getColor() != this->getColor())
+			if ( targetPiece == nullptr || targetPiece->getColor() != this->getColor())
 			{
 				vector.push_back(newPos);
 			}

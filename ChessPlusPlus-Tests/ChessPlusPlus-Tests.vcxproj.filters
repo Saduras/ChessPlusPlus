@@ -36,16 +36,10 @@
     <ClInclude Include="..\ChessPlusPlus\Board.h">
       <Filter>Header Files\MainProject</Filter>
     </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\ChessConsoleView.h">
-      <Filter>Header Files\MainProject</Filter>
-    </ClInclude>
     <ClInclude Include="..\ChessPlusPlus\Pieces\King.h">
       <Filter>Header Files\MainProject</Filter>
     </ClInclude>
     <ClInclude Include="..\ChessPlusPlus\Pieces\Knight.h">
-      <Filter>Header Files\MainProject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ChessPlusPlus\Match.h">
       <Filter>Header Files\MainProject</Filter>
     </ClInclude>
     <ClInclude Include="..\ChessPlusPlus\Pieces\Pawn.h">
@@ -83,16 +77,10 @@
     <ClCompile Include="..\ChessPlusPlus\Pieces\Bishop.cpp">
       <Filter>Source Files\Main Project</Filter>
     </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\ChessConsoleView.cpp">
-      <Filter>Source Files\Main Project</Filter>
-    </ClCompile>
     <ClCompile Include="..\ChessPlusPlus\Pieces\King.cpp">
       <Filter>Source Files\Main Project</Filter>
     </ClCompile>
     <ClCompile Include="..\ChessPlusPlus\Pieces\Knight.cpp">
-      <Filter>Source Files\Main Project</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Match.cpp">
       <Filter>Source Files\Main Project</Filter>
     </ClCompile>
     <ClCompile Include="..\ChessPlusPlus\Pieces\Pawn.cpp">
@@ -123,6 +111,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="KnightTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
