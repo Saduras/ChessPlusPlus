@@ -60,6 +60,9 @@
     <ClInclude Include="..\ChessPlusPlus\Pieces\Rook.h">
       <Filter>Header Files\MainProject</Filter>
     </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Game.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -113,7 +116,13 @@
     <ClCompile Include="KnightTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadTests.cpp">
+    <ClCompile Include="GameTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\Game.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreatTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

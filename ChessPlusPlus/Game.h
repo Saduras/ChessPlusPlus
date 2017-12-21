@@ -8,8 +8,10 @@ enum class GameState
 {
 	UNSTARTED,
 	ONGOING,
-	WON_WHITE,
-	WON_BLACK,
+	CHECK_WHITE,
+	CHECKMATE_WHITE,
+	CHECK_BLACK,
+	CHECKMATE_BLACK,
 };
 
 class Game
@@ -25,6 +27,9 @@ public:
 	}
 	void start();
 	bool doMove(Position from, Position to);
+
+	bool isCheck(Color playerColor);
+	bool isCheckmate(Color playerColor);
 
 private:
 	GameState state{ GameState::UNSTARTED };

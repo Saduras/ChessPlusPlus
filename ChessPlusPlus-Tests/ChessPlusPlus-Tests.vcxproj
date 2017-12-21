@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\ChessPlusPlus\Board.h" />
+    <ClInclude Include="..\ChessPlusPlus\Game.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\Bishop.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\King.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\Knight.h" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ChessPlusPlus\Board.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\Game.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Pieces\Bishop.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Pieces\King.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Pieces\Knight.cpp" />
@@ -178,6 +180,7 @@
     <ClCompile Include="..\ChessPlusPlus\Pieces\Queen.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Pieces\Rook.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Position.cpp" />
+    <ClCompile Include="GameTests.cpp" />
     <ClCompile Include="ThreatTests.cpp" />
     <ClCompile Include="KingTests.cpp" />
     <ClCompile Include="KnightTests.cpp" />
