@@ -113,5 +113,32 @@ namespace ChessPlusPlusTests
 				1,0,0,0,0,0,1,0,
 			});
 		}
+
+		TEST_METHOD(BishopCoverTest)
+		{
+			// Arrange
+			Board board{};
+			Bishop *whitePiece = new Bishop{ Color::WHITE };
+			Position whitePos{ 3,3 };
+			Bishop *otherPiece = new Bishop{ Color::WHITE };
+			Position otherPos{ 5,5 };
+			board.placePieceAt(whitePiece, whitePos);
+			board.placePieceAt(otherPiece, otherPos);
+
+			// Act
+			auto validPositions = whitePiece->getThreatedFieldsFor(whitePos, board);
+
+			// Assert
+			TestUtils::AssertPositions(validPositions, {
+				0,0,0,0,0,0,0,0,
+				1,0,0,0,0,0,0,0,
+				0,1,0,0,0,1,0,0,
+				0,0,1,0,1,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,1,0,1,0,0,0,
+				0,1,0,0,0,1,0,0,
+				1,0,0,0,0,0,1,0,
+			});
+		}
 	};
 }

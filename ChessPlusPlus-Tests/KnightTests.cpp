@@ -114,6 +114,33 @@ namespace ChessPlusPlusTests
 			});
 		}
 
+		TEST_METHOD(KnightCoverTest)
+		{
+			// Arrange
+			Board board{};
+			Knight *whitePiece = new Knight{ Color::WHITE };
+			Position whitePos{ 3,3 };
+			Knight *otherPiece = new Knight{ Color::WHITE };
+			Position otherPos{ 4,5 };
+			board.placePieceAt(whitePiece, whitePos);
+			board.placePieceAt(otherPiece, otherPos);
+
+			// Act
+			auto validPositions = whitePiece->getThreatedFieldsFor(whitePos, board);
+
+			// Assert
+			TestUtils::AssertPositions(validPositions, {
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,1,0,1,0,0,0,
+				0,1,0,0,0,1,0,0,
+				0,0,0,0,0,0,0,0,
+				0,1,0,0,0,1,0,0,
+				0,0,1,0,1,0,0,0,
+				0,0,0,0,0,0,0,0,
+			});
+		}
+
 		TEST_METHOD(KnightJumpTest)
 		{
 			// Arrange

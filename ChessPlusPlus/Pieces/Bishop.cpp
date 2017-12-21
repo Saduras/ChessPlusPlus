@@ -9,9 +9,9 @@ static Position offsets[4]{
 	Position{ -1, 1 }
 };
 
-std::vector<Position> Bishop::getMovesFor(Position pos, Board &board)
+std::vector<Position> getMoves(Bishop *self, Position pos, Board &board, bool includingThreats)
 {
-	std::vector<Position> vector{};
+	std::vector<Position> fields{};
 
 	int directionCount = sizeof(offsets) / sizeof(offsets[0]);
 	for (int i = 0; i < directionCount; i++)
@@ -22,20 +22,29 @@ std::vector<Position> Bishop::getMovesFor(Position pos, Board &board)
 			auto other = board.getPieceAt(newPos);
 			if (other)
 			{
-				if (other->getColor() != this->getColor())
-					vector.push_back(newPos);
-
+				if(includingThreats || other->getColor() != self->getColor())
+					fields.push_back(newPos);
 				break;
 			}
 			else
 			{
-				vector.push_back(newPos);
+				fields.push_back(newPos);
 				newPos += offsets[i];
 			}
 		}
 	}
 
-	return vector;
+	return fields;
+}
+
+std::vector<Position> Bishop::getMovesFor(Position pos, Board &board)
+{
+	return getMoves(this, pos, board, false);
+}
+
+std::vector<Position> Bishop::getThreatedFieldsFor(Position pos, Board &board)
+{
+	return getMoves(this, pos, board, true);
 }
 
 std::string Bishop::toString()

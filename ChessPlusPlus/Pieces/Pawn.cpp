@@ -14,47 +14,62 @@ static Position attackDirOffsets[2]
 	Position{-1, 0}
 };
 
-std::vector<Position> Pawn::getMovesFor(Position pos, Board &board)
+int getStartY(Color color)
 {
-	std::vector<Position> vector{};
+	return color == Color::WHITE ? 1 : 6;
+}
 
-	Position moveDir;
-	int startY;
-	if (getColor() == Color::WHITE)
-	{
-		moveDir = moveDirs[0];
-		startY = 1;
-	}
-	else
-	{
-		moveDir = moveDirs[1];
-		startY = 6;
-	}
+Position getMoveDir(Color color)
+{
+	return color == Color::WHITE ? moveDirs[0] : moveDirs[1];
+}
 
-	// normal move
-	auto newPos = pos + moveDir;
-	if(Position::isOnBoard(newPos) && !board.getPieceAt(newPos))
-		vector.push_back(newPos);
-
-	// start move
-	newPos = pos + moveDir + moveDir;
-	if (pos.y == startY && Position::isOnBoard(newPos) && !board.getPieceAt(newPos))
-		vector.push_back(newPos);
-	
-	// attack moves
+void addAttackMoves(Pawn* self, Position pos, Position moveDir, Board &board, bool includeThreads, std::vector<Position> &moves)
+{
 	for (int i = 0; i < 2; i++)
 	{
-		newPos = pos + moveDir + attackDirOffsets[i];
+		Position newPos = pos + moveDir + attackDirOffsets[i];
 
 		if (Position::isOnBoard(newPos))
 		{
 			auto targetPiece = board.getPieceAt(newPos);
-			if (targetPiece && targetPiece->getColor() != this->getColor())
-				vector.push_back(newPos);
+			if (targetPiece && (includeThreads || targetPiece->getColor() != self->getColor()))
+				moves.push_back(newPos);
 		}
 	}
+}
 
-	return vector;
+std::vector<Position> Pawn::getMovesFor(Position pos, Board &board)
+{
+	std::vector<Position> moves{};
+
+	Position moveDir = getMoveDir(getColor());
+	int startY = getStartY(getColor());
+
+	// normal move
+	auto newPos = pos + moveDir;
+	if(Position::isOnBoard(newPos) && !board.getPieceAt(newPos))
+		moves.push_back(newPos);
+
+	// start move
+	newPos = pos + moveDir + moveDir;
+	if (pos.y == startY && Position::isOnBoard(newPos) && !board.getPieceAt(newPos))
+		moves.push_back(newPos);
+	
+	// attack moves
+	addAttackMoves(this, pos, moveDir, board, false, moves);
+
+	return moves;
+}
+
+std::vector<Position> Pawn::getThreatedFieldsFor(Position pos, Board &board)
+{
+	std::vector<Position> moves{};
+
+	Position moveDir = getMoveDir(getColor());
+	addAttackMoves(this, pos, moveDir, board, true, moves);
+
+	return moves;
 }
 
 std::string Pawn::toString()

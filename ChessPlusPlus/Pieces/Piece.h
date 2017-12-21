@@ -19,6 +19,7 @@ public:
 
 	bool isValidMove(Position from, Position to, Board &board);
 	virtual std::vector<Position> getMovesFor(Position startPos, Board &board) = 0;
+	virtual std::vector<Position> getThreatedFieldsFor(Position startPos, Board &board) = 0;
 
 	inline Color getColor() { return color; }
 	inline std::string getColorString() {

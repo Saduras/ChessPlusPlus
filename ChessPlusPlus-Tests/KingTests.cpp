@@ -113,5 +113,32 @@ namespace ChessPlusPlusTests
 				0,0,0,0,0,0,0,0,
 			});
 		}
+
+		TEST_METHOD(KingCoverTest)
+		{
+			// Arrange
+			Board board{};
+			King *whitePiece = new King{ Color::WHITE };
+			Position whitePos{ 3,3 };
+			King *otherPiece = new King{ Color::WHITE };
+			Position otherPos{ 3,4 };
+			board.placePieceAt(whitePiece, whitePos);
+			board.placePieceAt(otherPiece, otherPos);
+
+			// Act
+			auto validPositions = whitePiece->getThreatedFieldsFor(whitePos, board);
+
+			// Assert
+			TestUtils::AssertPositions(validPositions, {
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,1,1,1,0,0,0,
+				0,0,1,0,1,0,0,0,
+				0,0,1,1,1,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+			});
+		}
 	};
 }

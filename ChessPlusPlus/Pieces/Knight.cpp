@@ -13,9 +13,9 @@ static Position offsets[8]{
 	Position{ 1, 2 }
 };
 
-std::vector<Position> Knight::getMovesFor(Position startPos, Board &board)
+std::vector<Position> getMoves(Knight* self, Position startPos, Board &board, bool includeThreats)
 {
-	std::vector<Position> vector{};
+	std::vector<Position> fields{};
 
 	for (int i = 0; i < 8; i++)
 	{
@@ -24,14 +24,24 @@ std::vector<Position> Knight::getMovesFor(Position startPos, Board &board)
 		if (Position::isOnBoard(newPos))
 		{
 			auto targetPiece = board.getPieceAt(newPos);
-			if (targetPiece == nullptr || targetPiece->getColor() != this->getColor())
+			if (targetPiece == nullptr || includeThreats || targetPiece->getColor() != self->getColor())
 			{
-				vector.push_back(newPos);
+				fields.push_back(newPos);
 			}
 		}
 	}
 
-	return vector;
+	return fields;
+}
+
+std::vector<Position> Knight::getMovesFor(Position startPos, Board &board)
+{
+	return getMoves(this, startPos, board, false);
+}
+
+std::vector<Position> Knight::getThreatedFieldsFor(Position startPos, Board &board)
+{
+	return getMoves(this, startPos, board, true);
 }
 
 std::string Knight::toString()

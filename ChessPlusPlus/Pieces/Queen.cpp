@@ -15,9 +15,9 @@ static Position offsets[8]{
 	Position{ -1, 1 }
 };
 
-std::vector<Position> Queen::getMovesFor(Position pos, Board &board)
+std::vector<Position> getMoves(Queen* self, Position pos, Board &board, bool includeThreats)
 {
-	std::vector<Position> vector{};
+	std::vector<Position> fields{};
 
 	int directionCount = sizeof(offsets) / sizeof(offsets[0]);
 	for (int i = 0; i < directionCount; i++)
@@ -28,20 +28,30 @@ std::vector<Position> Queen::getMovesFor(Position pos, Board &board)
 			auto other = board.getPieceAt(newPos);
 			if (other)
 			{
-				if (other->getColor() != this->getColor())
-					vector.push_back(newPos);
+				if (includeThreats || other->getColor() != self->getColor())
+					fields.push_back(newPos);
 
 				break;
 			}
 			else
 			{
-				vector.push_back(newPos);
+				fields.push_back(newPos);
 				newPos += offsets[i];
 			}
 		}
 	}
 
-	return vector;
+	return fields;
+}
+
+std::vector<Position> Queen::getMovesFor(Position pos, Board &board)
+{
+	return getMoves(this, pos, board, false);
+}
+
+std::vector<Position> Queen::getThreatedFieldsFor(Position pos, Board &board)
+{
+	return getMoves(this, pos, board, true);
 }
 
 std::string Queen::toString()

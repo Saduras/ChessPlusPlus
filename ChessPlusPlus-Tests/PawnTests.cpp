@@ -269,5 +269,55 @@ namespace ChessPlusPlusTests
 				0,0,0,0,0,0,0,0,
 			});
 		}
+
+		TEST_METHOD(PawnWhiteCoverTest)
+		{
+			// Arrange
+			Board board{};
+			Pawn *piece = new Pawn{ Color::WHITE };
+
+			board.placePieceAt(piece, Position{ 3,3 });
+			board.placePieceAt(new Pawn{ Color::WHITE }, Position{ 4,4 });
+
+			// Act
+			auto validPositions = piece->getThreatedFieldsFor(Position{ 3,3 }, board);
+
+			// Assert
+			TestUtils::AssertPositions(validPositions, {
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,1,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+			});
+		}
+
+		TEST_METHOD(PawnBlackCoverTest)
+		{
+			// Arrange
+			Board board{};
+			Pawn *piece = new Pawn{ Color::BLACK };
+
+			board.placePieceAt(piece, Position{ 3,3 });
+			board.placePieceAt(new Pawn{ Color::BLACK }, Position{ 2,2 });
+
+			// Act
+			auto validPositions = piece->getThreatedFieldsFor(Position{ 3,3 }, board);
+
+			// Assert
+			TestUtils::AssertPositions(validPositions, {
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,1,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+			});
+		}
 	};
 }

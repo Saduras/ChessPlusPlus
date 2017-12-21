@@ -65,7 +65,7 @@ bool Board::isThreatenedBy(Position targetPos, Color playerColor)
 			auto piece = getPieceAt(pos);
 			if (piece && piece->getColor() == playerColor)
 			{
-				auto moves = piece->getMovesFor(pos, *this);
+				auto moves = piece->getThreatedFieldsFor(pos, *this);
 				if (std::find(moves.begin(), moves.end(), targetPos) !=  moves.end())
 				{					
 					return true;
