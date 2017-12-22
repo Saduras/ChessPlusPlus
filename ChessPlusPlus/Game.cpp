@@ -77,23 +77,23 @@ bool Game::isCheck(Color playerColor)
 
 bool Game::isCheckmate(Color playerColor)
 {
+	bool result = false;
 	Position kingPos = findKing(board, playerColor);
 	Color opponentColor = playerColor == Color::WHITE ? Color::BLACK : Color::WHITE;
 
 	bool isCheck = board.isThreatenedBy(kingPos, opponentColor);
 
-	// temporary remove king from board
-	// this is for detect cases where threat changes by moving the king
-	auto king = board.getPieceAt(kingPos);
-	board.placePieceAt(nullptr, kingPos);
+	if (isCheck)
+	{
+		auto king = board.getPieceAt(kingPos);
+		auto moves = king->getMovesFor(kingPos, board);
+		bool hasValidMove = false;
+		for (auto move : moves)
+			hasValidMove |= board.isValidMove(kingPos, move, playerColor);
 
-	bool hasValidMove = false;
-	auto moves = king->getMovesFor(kingPos, board);
-	for (auto move : moves)
-		hasValidMove |= !board.isThreatenedBy(move, opponentColor);
+		result = isCheck && !hasValidMove;
+	}
 
-	// restore king on board
-	board.placePieceAt(king, kingPos);
 
-	return isCheck && !hasValidMove;
+	return result;
 }

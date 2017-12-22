@@ -47,12 +47,30 @@ void Board::placePieceAt(Piece *const piece, Position pos)
 
 bool Board::isValidMove(Position from, Position to, Color playerColor)
 {
+	bool isValid = false;
 	Piece *piece = getPieceAt(from);
+	Color opponentColor = playerColor == Color::WHITE ? Color::BLACK : Color::WHITE;
 
 	if (piece && piece->getColor() == playerColor)
-		return piece->isValidMove(from, to, *this);
-	else
-		return false;
+	{
+		auto king = dynamic_cast<King*>(piece);
+		if (king)
+		{
+			// temporary remove king from board
+			// this is for detect cases where threat changes by moving the king
+			this->placePieceAt(nullptr, from);
+
+			if(!this->isThreatenedBy(to, opponentColor))
+				isValid = piece->isValidMove(from, to, *this);
+
+			// revert king replacement
+			this->placePieceAt(king, from);
+		}
+		else
+			isValid = piece->isValidMove(from, to, *this);
+	}
+
+	return isValid;
 }
 
 bool Board::isThreatenedBy(Position targetPos, Color playerColor)
