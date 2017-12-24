@@ -39,25 +39,37 @@ bool Game::doMove(Position from, Position to)
 			onMovePiece(toMove, to);
 		board.movePiece(from, to);
 
-		currentPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
-
-		if (isCheckmate(currentPlayer))
+		if (isCheck(currentPlayer))
 		{
-			state = (currentPlayer == Color::WHITE) ? GameState::CHECKMATE_WHITE : GameState::CHECKMATE_BLACK;
-			std::cout << ((currentPlayer == Color::WHITE) ? "Black wins!" : "White wins!") << std::endl;
+			std::cout << "moved into check. Invalid!" << std::endl;
+			// revert move
+			board.movePiece(to, from);
+			if (toRemove)
+				board.placePieceAt(toRemove, to);
+		}
+		else
+		{
+			delete toRemove;
+			currentPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
+
+			if (isCheckmate(currentPlayer))
+			{
+				state = (currentPlayer == Color::WHITE) ? GameState::CHECKMATE_WHITE : GameState::CHECKMATE_BLACK;
+				std::cout << ((currentPlayer == Color::WHITE) ? "Black wins!" : "White wins!") << std::endl;
+			}
 		}
 	}
 	return isValid;
 }
 
-Position findKing(Board &board, const Color playerColor)
+Position findKing(Board *board, const Color playerColor)
 {
 	for (int x = 0; x < 8; x++)
 	{
 		for (int y = 0; y < 8; y++)
 		{
 			Position pos{ x, y };
-			auto piece = board.getPieceAt(pos);
+			auto piece = board->getPieceAt(pos);
 			if (dynamic_cast<King*>(piece) && piece->getColor() == playerColor)
 			{
 				return pos;
@@ -67,33 +79,37 @@ Position findKing(Board &board, const Color playerColor)
 	return Position{ -1, -1 };
 }
 
-bool Game::isCheck(Color playerColor)
+bool isCheck_internal(Color playerColor, Board *board)
 {
 	Position kingPos = findKing(board, playerColor);
 	Color opponentColor = playerColor == Color::WHITE ? Color::BLACK : Color::WHITE;
 
-	return board.isThreatenedBy(kingPos, opponentColor);
+	return board->isThreatenedBy(kingPos, opponentColor);
+}
+
+bool Game::isCheck(Color playerColor)
+{
+	return isCheck_internal(playerColor, &board);
 }
 
 bool Game::isCheckmate(Color playerColor)
 {
 	bool result = false;
-	Position kingPos = findKing(board, playerColor);
-	Color opponentColor = playerColor == Color::WHITE ? Color::BLACK : Color::WHITE;
-
-	bool isCheck = board.isThreatenedBy(kingPos, opponentColor);
+	bool isCheck = this->isCheck(playerColor);
 
 	if (isCheck)
 	{
-		auto king = board.getPieceAt(kingPos);
-		auto moves = king->getMovesFor(kingPos, board);
+		auto moves = board.getAllMovesFor(playerColor);
 		bool hasValidMove = false;
 		for (auto move : moves)
-			hasValidMove |= board.isValidMove(kingPos, move, playerColor);
+		{
+			Board *prediction = board.testMove(move);
+			hasValidMove |= !isCheck_internal(playerColor, prediction);
+			delete prediction;
+		}
 
 		result = isCheck && !hasValidMove;
 	}
-
 
 	return result;
 }

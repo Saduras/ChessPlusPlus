@@ -45,7 +45,7 @@ namespace ChessPlusPlusTests
 			Assert::IsTrue(game.isCheck(Color::BLACK), L"Exspected black to be check.");
 		}
 
-		TEST_METHOD(GameCheckmateFalseTest)
+		TEST_METHOD(GameFalseCheckmateTest)
 		{
 			// Arrange
 			Game game{};
@@ -56,6 +56,24 @@ namespace ChessPlusPlusTests
 			board->clear();
 			board->placePieceAt(new King(Color::WHITE), Position{ 0,0 });
 			board->placePieceAt(new Queen(Color::BLACK), Position{ 1,1 });
+
+			// Assert
+			Assert::IsFalse(game.isCheckmate(Color::WHITE), L"Exspected white to NOT be checkmate.");
+		}
+
+		TEST_METHOD(GameFalseCheckmateNoKingMoveTest)
+		{
+			// Arrange
+			Game game{};
+			game.start();
+
+			// Act
+			Board *board = game.getBoard();
+			board->clear();
+			board->placePieceAt(new King(Color::WHITE), Position{ 0,0 });
+			board->placePieceAt(new Rook(Color::WHITE), Position{ 0,1 });
+			board->placePieceAt(new Rook(Color::WHITE), Position{ 1,0 });
+			board->placePieceAt(new Queen(Color::BLACK), Position{ 3,3 });
 
 			// Assert
 			Assert::IsFalse(game.isCheckmate(Color::WHITE), L"Exspected white to NOT be checkmate.");

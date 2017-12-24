@@ -159,6 +159,7 @@
     <ClInclude Include="ChessPlusPlus.h" />
     <ClInclude Include="ChessWindowView.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="Pieces\Bishop.h" />
     <ClInclude Include="Pieces\King.h" />
     <ClInclude Include="Pieces\Knight.h" />
