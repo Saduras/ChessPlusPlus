@@ -14,6 +14,15 @@ void Game::start()
 	currentPlayer = Color::WHITE;
 }
 
+void Game::restart()
+{
+	board.clear();
+	state = GameState::UNSTARTED;
+	system("cls");
+
+	this->start();
+}
+
 bool isRunning(Game *game)
 {
 	return game->getState() == GameState::ONGOING 
@@ -56,6 +65,7 @@ bool Game::doMove(Position from, Position to)
 			{
 				state = (currentPlayer == Color::WHITE) ? GameState::CHECKMATE_WHITE : GameState::CHECKMATE_BLACK;
 				std::cout << ((currentPlayer == Color::WHITE) ? "Black wins!" : "White wins!") << std::endl;
+				std::cout << "Press enter to restart game." << std::endl;
 			}
 		}
 	}

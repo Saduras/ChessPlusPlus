@@ -26,6 +26,7 @@ public:
 		this->onMovePiece = onMovePiece;
 	}
 	void start();
+	void restart();
 	bool doMove(Position from, Position to);
 
 	bool isCheck(Color playerColor);

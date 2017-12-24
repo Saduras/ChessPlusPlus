@@ -28,7 +28,8 @@ private:
 	int dx = 0;
 	int dy = 0;
 
-	void loadSprites();
+	void loadTextures();
+	void initSprites();
 	void handleEvent(sf::Event event);
 };
 

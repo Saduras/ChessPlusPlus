@@ -32,15 +32,18 @@ ChessWindowView::~ChessWindowView()
 	delete dragSprite;
 }
 
-void ChessWindowView::loadSprites()
+void ChessWindowView::loadTextures()
 {
 	pieceTexture.loadFromFile("images/pieces.png");
 	boardTexture.loadFromFile("images/board.png");
-
+}
+void ChessWindowView::initSprites()
+{
 	boardSprite = Sprite{ boardTexture };
 
 	Board *board = game->getBoard();
 
+	pieceSprites.clear();
 	for (int x = 0; x < 8; x++)
 	{
 		for (int y = 0; y < 8; y++)
@@ -63,42 +66,53 @@ void ChessWindowView::handleEvent(Event event)
 	if (event.type == Event::Closed)
 		window.close();
 
-	// drag and drop
-	if (event.key.code == Mouse::Left)
+	if (game->getState() == GameState::CHECKMATE_WHITE || game->getState() == GameState::CHECKMATE_BLACK)
 	{
-		if (event.type == Event::MouseButtonPressed)
-			for (const auto& pair : pieceSprites)
-			{
-				auto sprite = pieceSprites[pair.first];
-				if (sprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
-				{
-					dragSprite = &pieceSprites[pair.first];
-					dragStart = dragSprite->getPosition();
-					dx = mousePos.x - dragStart.x;
-					dy = mousePos.y - dragStart.y;
-				}
-			}
-
-		if (event.type == Event::MouseButtonReleased)
+		if (event.key.code == Keyboard::Return)
 		{
-			const Vector2f pos = dragSprite->getPosition() + Vector2f(pieceSize / 2, pieceSize / 2);
-			const Vector2f snapPos{ static_cast<float>(pieceSize * static_cast<int>(pos.x / pieceSize)), 
-									static_cast<float>(pieceSize * static_cast<int>(pos.y / pieceSize)) };
-
-			const Position from{ static_cast<int>(dragStart.x / pieceSize),  static_cast<int>((700 - dragStart.y) / pieceSize) };
-			const Position to{   static_cast<int>(snapPos.x / pieceSize),    static_cast<int>((700 - snapPos.y) / pieceSize) };
-			std::cout << Position::toString(from) << " " << Position::toString(to) << std::endl;
-
-			// Reset sprite positon. The actual moving happens in onMovePiece
-			dragSprite->setPosition(dragStart);
-			game->doMove(from, to);
-			
-			dragSprite = nullptr;
+			game->restart();
+			initSprites();
 		}
 	}
+	else
+	{
+		// drag and drop
+		if (event.key.code == Mouse::Left)
+		{
+			if (event.type == Event::MouseButtonPressed)
+				for (const auto& pair : pieceSprites)
+				{
+					auto sprite = pieceSprites[pair.first];
+					if (sprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
+					{
+						dragSprite = &pieceSprites[pair.first];
+						dragStart = dragSprite->getPosition();
+						dx = mousePos.x - dragStart.x;
+						dy = mousePos.y - dragStart.y;
+					}
+				}
 
-	if (dragSprite)
-		dragSprite->setPosition(mousePos.x - dx, mousePos.y - dy);
+			if (event.type == Event::MouseButtonReleased)
+			{
+				const Vector2f pos = dragSprite->getPosition() + Vector2f(pieceSize / 2, pieceSize / 2);
+				const Vector2f snapPos{ static_cast<float>(pieceSize * static_cast<int>(pos.x / pieceSize)),
+					static_cast<float>(pieceSize * static_cast<int>(pos.y / pieceSize)) };
+
+				const Position from{ static_cast<int>(dragStart.x / pieceSize),  static_cast<int>((700 - dragStart.y) / pieceSize) };
+				const Position to{ static_cast<int>(snapPos.x / pieceSize),    static_cast<int>((700 - snapPos.y) / pieceSize) };
+				std::cout << Position::toString(from) << " " << Position::toString(to) << std::endl;
+
+				// Reset sprite positon. The actual moving happens in onMovePiece
+				dragSprite->setPosition(dragStart);
+				game->doMove(from, to);
+
+				dragSprite = nullptr;
+			}
+		}
+
+		if (dragSprite)
+			dragSprite->setPosition(mousePos.x - dx, mousePos.y - dy);
+	}
 }
 
 void ChessWindowView::run()
@@ -107,21 +121,21 @@ void ChessWindowView::run()
 	auto mvFnc = std::bind(&ChessWindowView::onMovePiece, this, std::placeholders::_1, std::placeholders::_2);
 	game->setCallbacks(rmvFnc, mvFnc);
 
-	loadSprites();
+	loadTextures();
+	initSprites();
 	window.setFramerateLimit(30);
 
 	while (window.isOpen())
 	{
 		if (game->getState() == GameState::CHECKMATE_WHITE)
 			window.setTitle("Black wins!");
-		else if (game->getState() == GameState::CHECKMATE_BLACK)
+		if (game->getState() == GameState::CHECKMATE_BLACK)
 			window.setTitle("White wins!");
+		
+		Event event;
+		while (window.pollEvent(event))
 		{
-			Event event;
-			while (window.pollEvent(event))
-			{
-				handleEvent(event);
-			}
+			handleEvent(event);
 		}
 
 		// draw
