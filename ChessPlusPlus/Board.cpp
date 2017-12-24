@@ -60,7 +60,7 @@ bool Board::isValidMove(Position from, Position to, Color playerColor)
 			// this is for detect cases where threat changes by moving the king
 			this->placePieceAt(nullptr, from);
 
-			if(!this->isThreatenedBy(to, opponentColor))
+			if (!this->isThreatenedBy(to, opponentColor))
 				isValid = piece->isValidMove(from, to, *this);
 
 			// revert king replacement
@@ -84,14 +84,40 @@ bool Board::isThreatenedBy(Position targetPos, Color playerColor)
 			if (piece && piece->getColor() == playerColor)
 			{
 				auto moves = piece->getThreatedFieldsFor(pos, *this);
-				if (std::find(moves.begin(), moves.end(), targetPos) !=  moves.end())
-				{					
+				if (std::find(moves.begin(), moves.end(), targetPos) != moves.end())
+				{
 					return true;
 				}
 			}
 		}
 	}
 	return false;
+}
+
+std::unordered_set<Move> Board::getAllMovesFor(Color playerColor)
+{
+	std::unordered_set<Move> moves{};
+
+	for (int x = 0; x < 8; x++)
+	{
+		for (int y = 0; y < 8; y++)
+		{
+			Position pos{ x,y };
+			auto piece = getPieceAt(pos);
+			if (piece && piece->getColor() == playerColor)
+			{
+				auto targetFields = piece->getMovesFor(pos, *this);
+				for (Position targetPos : targetFields)
+				{
+					bool equal = Move{ Position{0,0}, Position{1,1}} == Move{ pos, targetPos };
+					
+					moves.insert(Move{ pos, targetPos });
+				}
+			}
+		}
+	}
+
+	return moves;
 }
 
 void Board::movePiece(Position from, Position to)
@@ -105,10 +131,23 @@ void Board::removePieceAt(Position pos)
 {
 	int targetIndex = getFieldIndex(pos);
 	if (fields[targetIndex])
-	{
-		delete fields[targetIndex];
 		fields[targetIndex] = nullptr;
+}
+
+Board* Board::testMove(Move move)
+{
+	Board *copy = new Board{};
+
+	for (int i = 0; i < copy->fields.size(); i++)
+	{
+		if (this->fields[i])
+			copy->fields[i] = this->fields[i]->clone();
+		else
+			copy->fields[i] = nullptr;
 	}
+
+	copy->movePiece(move.from, move.to);
+	return copy;
 }
 
 void Board::clear()

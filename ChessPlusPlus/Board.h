@@ -3,7 +3,9 @@
 #include "stdafx.h"
 #include "Position.h"
 #include "Pieces.h"
+#include "Move.h"
 #include <array>
+#include <unordered_set>
 
 class Board
 {
@@ -17,9 +19,11 @@ public:
 
 	bool isValidMove(Position from, Position to, Color playerColor);
 	bool isThreatenedBy(Position targetPos, Color playerColor);
+	std::unordered_set<Move> getAllMovesFor(Color playerColor);
 
 	void movePiece(Position from, Position to);
 	void removePieceAt(Position pos);
+	Board* testMove(Move move);
 
 	void clear();
 
