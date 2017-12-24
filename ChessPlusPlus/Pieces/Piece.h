@@ -36,6 +36,8 @@ public:
 		}
 	}
 
+	virtual Piece* clone() = 0;
+
 	virtual std::string toString() = 0;
 	virtual std::string toShortString() = 0;
 

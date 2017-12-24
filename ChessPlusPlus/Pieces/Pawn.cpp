@@ -72,6 +72,11 @@ std::vector<Position> Pawn::getThreatedFieldsFor(Position pos, Board &board)
 	return moves;
 }
 
+Piece* Pawn::clone()
+{
+	return new Pawn{ this->getColor() };
+}
+
 std::string Pawn::toString()
 {
 	return "Pawn (" + getColorString() + ") ";

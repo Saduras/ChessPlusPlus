@@ -48,6 +48,11 @@ std::vector<Position> Rook::getThreatedFieldsFor(Position pos, Board &board)
 	return getMoves(this, pos, board, true);
 }
 
+Piece* Rook::clone()
+{
+	return new Rook{ this->getColor() };
+}
+
 std::string Rook::toString()
 {
 	return "King (" + getColorString() + ")";

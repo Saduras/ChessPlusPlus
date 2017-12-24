@@ -44,6 +44,11 @@ std::vector<Position> Knight::getThreatedFieldsFor(Position startPos, Board &boa
 	return getMoves(this, startPos, board, true);
 }
 
+Piece* Knight::clone()
+{
+	return new Knight{ this->getColor() };
+}
+
 std::string Knight::toString()
 {
 	return "Knight (" + getColorString() + ")";

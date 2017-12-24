@@ -54,6 +54,11 @@ std::vector<Position> Queen::getThreatedFieldsFor(Position pos, Board &board)
 	return getMoves(this, pos, board, true);
 }
 
+Piece* Queen::clone()
+{
+	return new Queen{ this->getColor() };
+}
+
 std::string Queen::toString()
 {
 	return "King (" + getColorString() + ")";

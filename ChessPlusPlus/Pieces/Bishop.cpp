@@ -47,6 +47,11 @@ std::vector<Position> Bishop::getThreatedFieldsFor(Position pos, Board &board)
 	return getMoves(this, pos, board, true);
 }
 
+Piece* Bishop::clone()
+{
+	return new Bishop{ this->getColor() };
+}
+
 std::string Bishop::toString()
 {
 	return "Bishop (" + getColorString() + ")";
