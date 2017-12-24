@@ -104,7 +104,7 @@ void ChessWindowView::handleEvent(Event event)
 
 				// Reset sprite positon. The actual moving happens in onMovePiece
 				dragSprite->setPosition(dragStart);
-				game->doMove(from, to);
+				game->doMove(Move{ from, to });
 
 				dragSprite = nullptr;
 			}

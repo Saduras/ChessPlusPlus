@@ -45,34 +45,6 @@ void Board::placePieceAt(Piece *const piece, Position pos)
 	fields[getFieldIndex(pos)] = piece;
 }
 
-bool Board::isValidMove(Position from, Position to, Color playerColor)
-{
-	bool isValid = false;
-	Piece *piece = getPieceAt(from);
-	Color opponentColor = playerColor == Color::WHITE ? Color::BLACK : Color::WHITE;
-
-	if (piece && piece->getColor() == playerColor)
-	{
-		auto king = dynamic_cast<King*>(piece);
-		if (king)
-		{
-			// temporary remove king from board
-			// this is for detect cases where threat changes by moving the king
-			this->placePieceAt(nullptr, from);
-
-			if (!this->isThreatenedBy(to, opponentColor))
-				isValid = piece->isValidMove(from, to, *this);
-
-			// revert king replacement
-			this->placePieceAt(king, from);
-		}
-		else
-			isValid = piece->isValidMove(from, to, *this);
-	}
-
-	return isValid;
-}
-
 bool Board::isThreatenedBy(Position targetPos, Color playerColor)
 {
 	for (int x = 0; x < 8; x++)
@@ -120,11 +92,11 @@ std::unordered_set<Move> Board::getAllMovesFor(Color playerColor)
 	return moves;
 }
 
-void Board::movePiece(Position from, Position to)
+void Board::movePiece(Move move)
 {
-	Piece *piece = getPieceAt(from);
-	fields[getFieldIndex(from)] = nullptr;
-	fields[getFieldIndex(to)] = piece;
+	Piece *piece = getPieceAt(move.from);
+	fields[getFieldIndex(move.from)] = nullptr;
+	fields[getFieldIndex(move.to)] = piece;
 }
 
 void Board::removePieceAt(Position pos)
@@ -146,7 +118,7 @@ Board* Board::testMove(Move move)
 			copy->fields[i] = nullptr;
 	}
 
-	copy->movePiece(move.from, move.to);
+	copy->movePiece(move);
 	return copy;
 }
 

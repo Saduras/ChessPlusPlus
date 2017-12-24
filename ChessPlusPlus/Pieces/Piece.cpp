@@ -6,13 +6,13 @@ Piece::Piece(Color col)
 	color = col;
 }
 
-bool Piece::isValidMove(Position from, Position to, Board &board)
+bool Piece::isValidMove(Move move, Board &board)
 {
-	auto moves = getMovesFor(from, board);
+	auto moves = getMovesFor(move.from, board);
 
 	for (unsigned int i = 0; i < moves.size(); i++)
 	{
-		if (moves[i] == to)
+		if (moves[i] == move.to)
 			return true;
 	}
 

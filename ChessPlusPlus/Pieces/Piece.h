@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Position.h"
+#include "Move.h"
 #include <vector>
 
 class Board;
@@ -17,7 +18,7 @@ class Piece
 public:
 	explicit Piece(Color color);
 
-	bool isValidMove(Position from, Position to, Board &board);
+	bool isValidMove(Move move, Board &board);
 	virtual std::vector<Position> getMovesFor(Position startPos, Board &board) = 0;
 	virtual std::vector<Position> getThreatedFieldsFor(Position startPos, Board &board) = 0;
 

@@ -17,11 +17,10 @@ public:
 	Piece* getPieceAt(Position pos);
 	void placePieceAt(Piece *const piece, Position pos);
 
-	bool isValidMove(Position from, Position to, Color playerColor);
 	bool isThreatenedBy(Position targetPos, Color playerColor);
 	std::unordered_set<Move> getAllMovesFor(Color playerColor);
 
-	void movePiece(Position from, Position to);
+	void movePiece(Move move);
 	void removePieceAt(Position pos);
 	Board* testMove(Move move);
 

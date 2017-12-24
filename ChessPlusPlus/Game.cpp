@@ -30,46 +30,56 @@ bool isRunning(Game *game)
 		|| game->getState() == GameState::CHECK_BLACK;
 }
 
-bool Game::doMove(Position from, Position to)
+bool Game::isValidMove(Move move)
 {
-	bool isValid = board.isValidMove(from, to, currentPlayer);
-	if (isValid && isRunning(this))
+	bool isValidPieceMove = false;
+	Piece *piece = board.getPieceAt(move.from);
+	Color opponentColor = currentPlayer == Color::WHITE ? Color::BLACK : Color::WHITE;
+
+	if (piece && piece->getColor() == currentPlayer)
+		isValidPieceMove = piece->isValidMove(move, board);
+	
+	bool willBeCheck = false;
+	if (isValidPieceMove)
 	{
-		Piece *toRemove = board.getPieceAt(to);
-		if (toRemove)
-		{
-			if (onRemovePiece)
-				onRemovePiece(toRemove);
-			board.removePieceAt(to);
-		}
-
-		Piece *toMove = board.getPieceAt(from);
-		if (onMovePiece)
-			onMovePiece(toMove, to);
-		board.movePiece(from, to);
-
-		if (isCheck(currentPlayer))
-		{
-			std::cout << "moved into check. Invalid!" << std::endl;
-			// revert move
-			board.movePiece(to, from);
-			if (toRemove)
-				board.placePieceAt(toRemove, to);
-		}
-		else
-		{
-			delete toRemove;
-			currentPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
-
-			if (isCheckmate(currentPlayer))
-			{
-				state = (currentPlayer == Color::WHITE) ? GameState::CHECKMATE_WHITE : GameState::CHECKMATE_BLACK;
-				std::cout << ((currentPlayer == Color::WHITE) ? "Black wins!" : "White wins!") << std::endl;
-				std::cout << "Press enter to restart game." << std::endl;
-			}
-		}
+		auto prediction = board.testMove(move);
+		willBeCheck = isCheck_internal(currentPlayer, prediction);
+		delete prediction;
 	}
-	return isValid;
+	return isValidPieceMove && !willBeCheck;
+}
+
+bool Game::doMove(Move move)
+{
+	if (!isRunning(this))
+		return false;
+
+	if (!isValidMove(move))
+		return false;
+
+	Piece *toRemove = board.getPieceAt(move.to);
+	if (toRemove)
+	{
+		if (onRemovePiece)
+			onRemovePiece(toRemove);
+		board.removePieceAt(move.to);
+	}
+	delete toRemove;
+
+	Piece *toMove = board.getPieceAt(move.from);
+	if (onMovePiece)
+		onMovePiece(toMove, move.to);
+	board.movePiece(move);
+
+	currentPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
+
+	if (isCheckmate(currentPlayer))
+	{
+		state = (currentPlayer == Color::WHITE) ? GameState::CHECKMATE_WHITE : GameState::CHECKMATE_BLACK;
+		std::cout << ((currentPlayer == Color::WHITE) ? "Black wins!" : "White wins!") << std::endl;
+		std::cout << "Press enter to restart game." << std::endl;
+	}
+	return true;
 }
 
 Position findKing(Board *board, const Color playerColor)
@@ -89,7 +99,7 @@ Position findKing(Board *board, const Color playerColor)
 	return Position{ -1, -1 };
 }
 
-bool isCheck_internal(Color playerColor, Board *board)
+bool Game::isCheck_internal(Color playerColor, Board *board)
 {
 	Position kingPos = findKing(board, playerColor);
 	Color opponentColor = playerColor == Color::WHITE ? Color::BLACK : Color::WHITE;

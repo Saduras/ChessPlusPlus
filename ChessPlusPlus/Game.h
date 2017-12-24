@@ -27,8 +27,9 @@ public:
 	}
 	void start();
 	void restart();
-	bool doMove(Position from, Position to);
+	bool doMove(Move move);
 
+	bool isValidMove(Move move);
 	bool isCheck(Color playerColor);
 	bool isCheckmate(Color playerColor);
 
@@ -39,4 +40,6 @@ private:
 
 	std::function<void(Piece*)> onRemovePiece;
 	std::function<void(Piece*, Position)> onMovePiece;
+
+	bool isCheck_internal(Color currentPlayer, Board *board);
 };

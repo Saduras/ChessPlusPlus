@@ -112,5 +112,72 @@ namespace ChessPlusPlusTests
 			// Assert
 			Assert::IsTrue(game.isCheckmate(Color::WHITE), L"Exspected white to be checkmate.");
 		}
+
+
+
+		TEST_METHOD(GameMoveIntoCheckTest)
+		{
+			// Arrange
+			Game game{};
+			game.start();
+			Board *board = game.getBoard();
+			board->clear();
+
+			board->placePieceAt(new King{ Color::WHITE }, Position{ 3,3 });
+			board->placePieceAt(new King{ Color::BLACK }, Position{ 3,4 });
+
+			// Act
+			bool move1 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,4 } });
+			bool move2 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,4 } });
+			bool move3 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,3 } });
+			bool move4 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,2 } });
+
+			// Assert
+
+			// Attack other king
+			Assert::IsTrue(move1, L"Move1 validation failed");
+			// Move into  check
+			Assert::IsFalse(move2, L"Move2 validation failed");
+			Assert::IsFalse(move3, L"Move3 validation failed");
+			// Move away
+			Assert::IsTrue(move4, L"Move4 validation failed");
+		}
+
+		TEST_METHOD(GameCheckmateTest)
+		{
+			// Arrange
+			Game game{};
+			game.start();
+			Board *board = game.getBoard();
+			board->clear();
+
+			board->placePieceAt(new King{ Color::WHITE }, Position{ 3,3 });
+			board->placePieceAt(new Queen{ Color::BLACK }, Position{ 4,3 });
+			board->placePieceAt(new Rook{ Color::BLACK }, Position{ 2,3 });
+
+			// Act
+			bool move1 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,3 } });
+			bool move2 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,3 } });
+			bool move3 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,2 } });
+			bool move4 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,2 } });
+			bool move5 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,2 } });
+			bool move6 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,4 } });
+			bool move7 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,4 } });
+			bool move8 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,4 } });
+
+			// Assert
+
+			// Attack queen
+			Assert::IsFalse(move1, L"Move1 validation failed");
+			// Attack rook
+			Assert::IsFalse(move2, L"Move2 validation failed");
+			// Flee
+			Assert::IsFalse(move3, L"Move3 validation failed");
+			Assert::IsFalse(move4, L"Move4 validation failed");
+			Assert::IsFalse(move5, L"Move5 validation failed");
+			Assert::IsFalse(move6, L"Move6 validation failed");
+			Assert::IsFalse(move7, L"Move7 validation failed");
+			Assert::IsFalse(move8, L"Move8 validation failed");
+		}
 	};
 }
