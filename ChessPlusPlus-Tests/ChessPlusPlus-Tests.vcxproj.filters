@@ -63,6 +63,12 @@
     <ClInclude Include="..\ChessPlusPlus\Game.h">
       <Filter>Header Files\MainProject</Filter>
     </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\HumanAgent.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChessPlusPlus\Agent.h">
+      <Filter>Header Files\MainProject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

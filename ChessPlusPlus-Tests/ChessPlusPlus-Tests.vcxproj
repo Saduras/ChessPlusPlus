@@ -154,8 +154,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\ChessPlusPlus\Agent.h" />
     <ClInclude Include="..\ChessPlusPlus\Board.h" />
     <ClInclude Include="..\ChessPlusPlus\Game.h" />
+    <ClInclude Include="..\ChessPlusPlus\HumanAgent.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\Bishop.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\King.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\Knight.h" />

@@ -1,6 +1,20 @@
 #include "stdafx.h"
 #include "Game.h" 
 
+Game::Game(Agent *whiteAgent, Agent *blackAgent)
+{
+	this->whiteAgent = whiteAgent;
+	whiteAgent->setGame(this);
+	this->blackAgent = blackAgent;
+	blackAgent->setGame(this);
+}
+
+Game::~Game()
+{
+	delete whiteAgent;
+	delete blackAgent;
+}
+
 void Game::start()
 {
 	if (state != GameState::UNSTARTED)
@@ -72,6 +86,7 @@ bool Game::doMove(Move move)
 	board.movePiece(move);
 
 	currentPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
+	getCurrentAgent()->nextTurn();
 
 	if (isCheckmate(currentPlayer))
 	{

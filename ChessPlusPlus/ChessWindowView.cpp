@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ChessWindowView.h"
+#include "HumanAgent.h"
 #include <map>
 #include <functional>
 
@@ -74,7 +75,7 @@ void ChessWindowView::handleEvent(Event event)
 			initSprites();
 		}
 	}
-	else
+	else if(dynamic_cast<HumanAgent*>(game->getCurrentAgent()))
 	{
 		// drag and drop
 		if (event.key.code == Mouse::Left)

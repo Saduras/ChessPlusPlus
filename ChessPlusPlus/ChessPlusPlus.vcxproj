@@ -157,10 +157,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Agent.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="ChessPlusPlus.h" />
     <ClInclude Include="ChessWindowView.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HumanAgent.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Pieces\Bishop.h" />
     <ClInclude Include="Pieces\King.h" />

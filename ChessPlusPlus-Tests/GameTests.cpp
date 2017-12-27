@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "Game.h"
+#include "HumanAgent.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -13,7 +14,7 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(GameStartTest)
 		{
 			// Arrange
-			Game game{};
+			Game game{ new HumanAgent(), new HumanAgent() };
 			GameState initalState = game.getState();
 
 			// Act
@@ -31,7 +32,7 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(GameCheckTest)
 		{
 			// Arrange
-			Game game{};
+			Game game{ new HumanAgent(), new HumanAgent() };
 			game.start();
 
 			// Act
@@ -48,7 +49,7 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(GameFalseCheckmateTest)
 		{
 			// Arrange
-			Game game{};
+			Game game{ new HumanAgent(), new HumanAgent() };
 			game.start();
 
 			// Act
@@ -64,7 +65,7 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(GameFalseCheckmateNoKingMoveTest)
 		{
 			// Arrange
-			Game game{};
+			Game game{ new HumanAgent(), new HumanAgent() };
 			game.start();
 
 			// Act
@@ -82,7 +83,7 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(GameCheckmateCornerTest)
 		{
 			// Arrange
-			Game game{};
+			Game game{ new HumanAgent(), new HumanAgent() };
 			game.start();
 
 			// Act
@@ -99,7 +100,7 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(GameCheckmateSurroundedTest)
 		{
 			// Arrange
-			Game game{};
+			Game game{ new HumanAgent(), new HumanAgent() };
 			game.start();
 
 			// Act
@@ -118,7 +119,7 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(GameMoveIntoCheckTest)
 		{
 			// Arrange
-			Game game{};
+			Game game{ new HumanAgent(), new HumanAgent() };
 			game.start();
 			Board *board = game.getBoard();
 			board->clear();
@@ -146,7 +147,7 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(GameCheckmateTest)
 		{
 			// Arrange
-			Game game{};
+			Game game{ new HumanAgent(), new HumanAgent() };
 			game.start();
 			Board *board = game.getBoard();
 			board->clear();
