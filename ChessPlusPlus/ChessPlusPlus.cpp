@@ -11,7 +11,7 @@
 
 int main()
 {
-	Game game{ new MiniMaxAgent{ 2 }, new RandomAgent(), 200 };
+	Game game{ new MiniMaxAgent{ 2 }, new RandomAgent(), 0 };
 	game.start();
 
 	ChessWindowView view{ &game };

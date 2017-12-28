@@ -151,9 +151,6 @@ bool Game::isCheck(Color playerColor)
 bool Game::isCheckmate(Color playerColor)
 {
 	auto moves = getValidMoves(playerColor, getBoard());
-
-	std::cout << "Moves: " + std::to_string(moves.size()) << std::endl;
-
 	return moves.size() == 0;
 }
 
