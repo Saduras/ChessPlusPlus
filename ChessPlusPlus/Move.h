@@ -6,6 +6,11 @@ struct Move
 {
 	Position from;
 	Position to;
+
+	static std::string toString(Move move)
+	{
+		return Position::toString(move.from) + " " + Position::toString(move.to);
+	}
 };
 
 inline bool operator==(const Move& lhs, const Move& rhs) { return lhs.from == rhs.from && lhs.to == rhs.to; }
