@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include <future>
 
 class Game;
 
@@ -12,9 +13,11 @@ public:
 		this->color = color;
 		this->game = game;
 	}
-	virtual void nextTurn() = 0;
+	virtual std::future<Move> nextTurn() = 0;
 
 protected:
 	Game* game;
 	Color color;
+
+	std::promise<Move> promise;
 };

@@ -65,7 +65,12 @@ void ChessWindowView::handleEvent(Event event)
 {
 	Vector2i mousePos = Mouse::getPosition(window);
 	if (event.type == Event::Closed)
+	{
+		game->stop();
 		window.close();
+	}
+
+	auto humanAgent = dynamic_cast<HumanAgent*>(game->getCurrentAgent());
 
 	if (game->getState() == GameState::CHECKMATE_WHITE || game->getState() == GameState::CHECKMATE_BLACK)
 	{
@@ -75,7 +80,7 @@ void ChessWindowView::handleEvent(Event event)
 			initSprites();
 		}
 	}
-	else if(dynamic_cast<HumanAgent*>(game->getCurrentAgent()))
+	else if(humanAgent)
 	{
 		// drag and drop
 		if (event.key.code == Mouse::Left)
@@ -105,9 +110,9 @@ void ChessWindowView::handleEvent(Event event)
 
 				// Reset sprite positon. The actual moving happens in onMovePiece
 				dragSprite->setPosition(dragStart);
-				game->doMove(Move{ from, to });
-
 				dragSprite = nullptr;
+
+				humanAgent->setMove(Move{ from, to });
 			}
 		}
 
@@ -158,5 +163,6 @@ void ChessWindowView::onRemovePiece(Piece *removedPiece)
 
 void ChessWindowView::onMovePiece(Piece* movedPiece, Position newPos)
 {
-	pieceSprites[movedPiece].setPosition(newPos.x * pieceSize, 700 - newPos.y * pieceSize);
+	if(pieceSprites.count(movedPiece))
+		pieceSprites[movedPiece].setPosition(newPos.x * pieceSize, 700 - newPos.y * pieceSize);
 }

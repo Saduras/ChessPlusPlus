@@ -4,10 +4,9 @@
 class HumanAgent : public Agent
 {
 public:
-	void nextTurn()
-	{
-		// Nothing to do here
-		// Input is handled in ChessWindowView
-	}
+	~HumanAgent();
+
+	std::future<Move> nextTurn();
+	inline void setMove(Move move) { promise.set_value(move); };
 };
 

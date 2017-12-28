@@ -4,5 +4,7 @@
 class RandomAgent : public Agent
 {
 public:
-	void nextTurn();
+	~RandomAgent();
+
+	std::future<Move> nextTurn();
 };

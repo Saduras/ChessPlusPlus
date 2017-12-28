@@ -182,6 +182,7 @@
     <ClCompile Include="ChessPlusPlus.cpp" />
     <ClCompile Include="ChessWindowView.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HumanAgent.cpp" />
     <ClCompile Include="Pieces\Bishop.cpp" />
     <ClCompile Include="Pieces\King.cpp" />
     <ClCompile Include="Pieces\Knight.cpp" />

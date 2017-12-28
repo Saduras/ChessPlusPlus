@@ -11,6 +11,9 @@ Game::Game(Agent *whiteAgent, Agent *blackAgent)
 
 Game::~Game()
 {
+	if (isRunning())
+		stop();
+
 	delete whiteAgent;
 	delete blackAgent;
 }
@@ -18,30 +21,45 @@ Game::~Game()
 void Game::start()
 {
 	if (state != GameState::UNSTARTED)
-	{
 		return;
-	}
 
 	state = GameState::ONGOING;
 	board.setupWithDefault();
 
 	currentPlayer = Color::WHITE;
+
+	thread = std::thread([this]() 
+	{	
+		while (this && this->isRunning())
+		{
+			auto future = this->getCurrentAgent()->nextTurn();
+			if(future.valid())
+				future.wait();
+			if (future.valid())
+				this->doMove(future.get());
+		}
+	});
 }
 
 void Game::restart()
 {
+	stop();
+	start();
+}
+
+void Game::stop()
+{
 	board.clear();
 	state = GameState::UNSTARTED;
 	system("cls");
-
-	this->start();
+	thread.join();
 }
 
-bool isRunning(Game *game)
+bool Game::isRunning()
 {
-	return game->getState() == GameState::ONGOING 
-		|| game->getState() == GameState::CHECK_WHITE 
-		|| game->getState() == GameState::CHECK_BLACK;
+	return this ->getState() == GameState::ONGOING 
+		|| this ->getState() == GameState::CHECK_WHITE 
+		|| this ->getState() == GameState::CHECK_BLACK;
 }
 
 bool Game::isValidMove(Move move)
@@ -65,7 +83,7 @@ bool Game::isValidMove(Move move)
 
 bool Game::doMove(Move move)
 {
-	if (!isRunning(this))
+	if (!isRunning())
 		return false;
 
 	if (!isValidMove(move))
@@ -86,7 +104,6 @@ bool Game::doMove(Move move)
 	board.movePiece(move);
 
 	currentPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
-	getCurrentAgent()->nextTurn();
 
 	if (isCheckmate(currentPlayer))
 	{

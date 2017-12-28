@@ -131,6 +131,9 @@
     <ClCompile Include="RandomAgent.cpp">
       <Filter>Source Files\Agents</Filter>
     </ClCompile>
+    <ClCompile Include="HumanAgent.cpp">
+      <Filter>Source Files\Agents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\board.png">

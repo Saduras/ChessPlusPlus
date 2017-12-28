@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <thread>
 #include "Board.h"
 #include "Piece.h"
 #include "Agent.h"
@@ -32,15 +33,18 @@ public:
 	}
 	void start();
 	void restart();
+	void stop();
 	bool doMove(Move move);
 
 	inline Agent* getCurrentAgent() { return (currentPlayer == Color::WHITE) ? whiteAgent : blackAgent; }
 
+	bool isRunning();
 	bool isValidMove(Move move);
 	bool isCheck(Color playerColor);
 	bool isCheckmate(Color playerColor);
 
 private:
+	std::thread thread;
 	GameState state{ GameState::UNSTARTED };
 	Board board{};
 	Color currentPlayer;
