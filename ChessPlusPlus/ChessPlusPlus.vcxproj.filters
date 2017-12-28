@@ -19,6 +19,12 @@
     <Filter Include="Header Files\Pieces">
       <UniqueIdentifier>{c9b82225-1ff0-44ae-8e69-5ac98e8e71eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Agents">
+      <UniqueIdentifier>{9a363ee6-d630-4d0f-8086-d9f30a888de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Agents">
+      <UniqueIdentifier>{79863f35-a5c7-4427-b75a-c722962083ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -72,11 +78,14 @@
     <ClInclude Include="Move.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Agent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HumanAgent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomAgent.h">
+      <Filter>Header Files\Agents</Filter>
+    </ClInclude>
+    <ClInclude Include="Agent.h">
+      <Filter>Header Files\Agents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomAgent.cpp">
+      <Filter>Source Files\Agents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

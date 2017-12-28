@@ -4,9 +4,9 @@
 Game::Game(Agent *whiteAgent, Agent *blackAgent)
 {
 	this->whiteAgent = whiteAgent;
-	whiteAgent->setGame(this);
+	whiteAgent->setup(Color::WHITE, this);
 	this->blackAgent = blackAgent;
-	blackAgent->setGame(this);
+	blackAgent->setup(Color::BLACK, this);
 }
 
 Game::~Game()

@@ -6,10 +6,11 @@
 #include "Game.h"
 #include "ChessWindowView.h"
 #include "HumanAgent.h"
+#include "RandomAgent.h"
 
 int main()
 {
-	Game game{ new HumanAgent(), new HumanAgent() };
+	Game game{ new HumanAgent(), new RandomAgent() };
 	game.start();
 
 	ChessWindowView view{ &game };

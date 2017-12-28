@@ -5,6 +5,8 @@
 #include "Piece.h"
 #include "Agent.h"
 
+class Agent;
+
 enum class GameState
 {
 	UNSTARTED,
