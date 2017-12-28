@@ -2,6 +2,7 @@
 #include "MiniMaxAgent.h"
 #include <map>
 #include <iostream>
+#include <algorithm>
 
 std::map<std::string, int> scoreMap{
 	{ "K", 900 }, { "k", -900 },
@@ -51,8 +52,10 @@ SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, b
 	if (searchDepth == 0)
 		return SearchResult{ evalBoard(board), Move{Position{-1,-1},Position{-1,1} } };
 
-	searchDepth--;
 	auto moves = game->getValidMoves(currentPlayer, board);
+	std::random_shuffle(moves.begin(), moves.end());
+
+	searchDepth--;
 	auto nextPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
 
 	if (isMaximisingPlayer)
