@@ -21,7 +21,7 @@ enum class GameState
 class Game
 {
 public:
-	Game(Agent *whiteAgent, Agent *blackAgent);
+	Game(Agent *whiteAgent, Agent *blackAgent, int delayInMs = 0);
 	~Game();
 	inline GameState getState() { return state; }
 	inline Board* getBoard() { return &board; }
@@ -37,15 +37,17 @@ public:
 	bool doMove(Move move);
 
 	inline Agent* getCurrentAgent() { return (currentPlayer == Color::WHITE) ? whiteAgent : blackAgent; }
+	inline int getMoveDelay() { return moveDelayInMs; }
 
 	bool isRunning();
-	bool isValidMove(Move move);
+	bool isValidMove(Move move, Color playerColor, Board *board);
 	bool isCheck(Color playerColor);
 	bool isCheckmate(Color playerColor);
 
 private:
-	std::thread thread;
+	int moveDelayInMs{ 0 };
 	GameState state{ GameState::UNSTARTED };
+	std::thread thread;
 	Board board{};
 	Color currentPlayer;
 	Agent* whiteAgent;

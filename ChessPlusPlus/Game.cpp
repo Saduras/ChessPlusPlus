@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "Game.h" 
+#include <chrono>
 
-Game::Game(Agent *whiteAgent, Agent *blackAgent)
+Game::Game(Agent *whiteAgent, Agent *blackAgent, int delayInMs)
 {
+	moveDelayInMs = delayInMs;
 	this->whiteAgent = whiteAgent;
 	whiteAgent->setup(Color::WHITE, this);
 	this->blackAgent = blackAgent;
@@ -11,11 +13,10 @@ Game::Game(Agent *whiteAgent, Agent *blackAgent)
 
 Game::~Game()
 {
-	if (isRunning())
-		stop();
-
 	delete whiteAgent;
 	delete blackAgent;
+	if (isRunning())
+		stop();
 }
 
 void Game::start()
@@ -35,6 +36,9 @@ void Game::start()
 			auto future = this->getCurrentAgent()->nextTurn();
 			if(future.valid())
 				future.wait();
+
+			std::this_thread::sleep_for(std::chrono::milliseconds(this->getMoveDelay()));
+
 			if (future.valid())
 				this->doMove(future.get());
 		}
@@ -62,19 +66,19 @@ bool Game::isRunning()
 		|| this ->getState() == GameState::CHECK_BLACK;
 }
 
-bool Game::isValidMove(Move move)
+bool Game::isValidMove(Move move, Color playerColor, Board *board)
 {
 	bool isValidPieceMove = false;
-	Piece *piece = board.getPieceAt(move.from);
+	Piece *piece = board->getPieceAt(move.from);
 	Color opponentColor = currentPlayer == Color::WHITE ? Color::BLACK : Color::WHITE;
 
-	if (piece && piece->getColor() == currentPlayer)
-		isValidPieceMove = piece->isValidMove(move, board);
+	if (piece && piece->getColor() == playerColor)
+		isValidPieceMove = piece->isValidMove(move, *board);
 	
 	bool willBeCheck = false;
 	if (isValidPieceMove)
 	{
-		auto prediction = board.testMove(move);
+		auto prediction = board->testMove(move);
 		willBeCheck = isCheck_internal(currentPlayer, prediction);
 		delete prediction;
 	}
@@ -86,7 +90,7 @@ bool Game::doMove(Move move)
 	if (!isRunning())
 		return false;
 
-	if (!isValidMove(move))
+	if (!isValidMove(move, currentPlayer, &board))
 		return false;
 
 	Piece *toRemove = board.getPieceAt(move.to);
