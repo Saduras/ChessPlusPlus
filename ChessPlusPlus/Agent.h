@@ -16,7 +16,6 @@ public:
 		this->game = game;
 	}
 	virtual std::future<Move> nextTurn() = 0;
-	std::vector<Move> getValidMoves(Color player, Board* board);
 
 protected:
 	Game* game;

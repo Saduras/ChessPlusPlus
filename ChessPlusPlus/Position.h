@@ -8,7 +8,11 @@ struct Position
 	int y;
 
 	static bool isOnBoard(Position pos);
-	static std::string toString(Position pos);
+	static std::string toString(Position pos)
+	{
+		return std::string(1, (char)((int)'a' + pos.x))
+			+ std::to_string(pos.y + 1);
+	}
 
 	struct Position& operator+=(const Position& rhs) { x += rhs.x; y += rhs.y; return *this; }
 	struct Position& operator-=(const Position& rhs) { x -= rhs.x; y -= rhs.y; return *this; }

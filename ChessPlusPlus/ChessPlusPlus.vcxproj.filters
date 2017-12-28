@@ -87,6 +87,9 @@
     <ClInclude Include="Agent.h">
       <Filter>Header Files\Agents</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMaxAgent.h">
+      <Filter>Header Files\Agents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -132,6 +135,12 @@
       <Filter>Source Files\Agents</Filter>
     </ClCompile>
     <ClCompile Include="HumanAgent.cpp">
+      <Filter>Source Files\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
+      <Filter>Source Files\Agents</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMaxAgent.cpp">
       <Filter>Source Files\Agents</Filter>
     </ClCompile>
   </ItemGroup>

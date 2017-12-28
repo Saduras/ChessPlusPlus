@@ -7,10 +7,11 @@
 #include "ChessWindowView.h"
 #include "HumanAgent.h"
 #include "RandomAgent.h"
+#include "MiniMaxAgent.h"
 
 int main()
 {
-	Game game{ new HumanAgent(), new RandomAgent() };
+	Game game{ new MiniMaxAgent{ 2 }, new RandomAgent(), 200 };
 	game.start();
 
 	ChessWindowView view{ &game };

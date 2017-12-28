@@ -158,6 +158,7 @@
     <ClInclude Include="..\ChessPlusPlus\Board.h" />
     <ClInclude Include="..\ChessPlusPlus\Game.h" />
     <ClInclude Include="..\ChessPlusPlus\HumanAgent.h" />
+    <ClInclude Include="..\ChessPlusPlus\MiniMaxAgent.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\Bishop.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\King.h" />
     <ClInclude Include="..\ChessPlusPlus\Pieces\Knight.h" />
@@ -172,9 +173,11 @@
     <ClInclude Include="TestUtils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\ChessPlusPlus\Agent.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Board.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Game.cpp" />
     <ClCompile Include="..\ChessPlusPlus\HumanAgent.cpp" />
+    <ClCompile Include="..\ChessPlusPlus\MiniMaxAgent.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Pieces\Bishop.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Pieces\King.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Pieces\Knight.cpp" />
@@ -184,6 +187,7 @@
     <ClCompile Include="..\ChessPlusPlus\Pieces\Rook.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Position.cpp" />
     <ClCompile Include="GameTests.cpp" />
+    <ClCompile Include="MiniMaxAgentTests.cpp" />
     <ClCompile Include="ThreatTests.cpp" />
     <ClCompile Include="KingTests.cpp" />
     <ClCompile Include="KnightTests.cpp" />

@@ -114,8 +114,6 @@ namespace ChessPlusPlusTests
 			Assert::IsTrue(game.isCheckmate(Color::WHITE), L"Exspected white to be checkmate.");
 		}
 
-
-
 		TEST_METHOD(GameMoveIntoCheckTest)
 		{
 			// Arrange
@@ -128,10 +126,10 @@ namespace ChessPlusPlusTests
 			board->placePieceAt(new King{ Color::BLACK }, Position{ 3,4 });
 
 			// Act
-			bool move1 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,4 } });
-			bool move2 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,4 } });
-			bool move3 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,3 } });
-			bool move4 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,2 } });
+			bool move1 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,4 } }, Color::WHITE, board);
+			bool move2 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,4 } }, Color::WHITE, board);
+			bool move3 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,3 } }, Color::WHITE, board);
+			bool move4 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,2 } }, Color::WHITE, board);
 
 			// Assert
 
@@ -157,15 +155,15 @@ namespace ChessPlusPlusTests
 			board->placePieceAt(new Rook{ Color::BLACK }, Position{ 2,3 });
 
 			// Act
-			bool move1 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,3 } });
-			bool move2 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,3 } });
-			bool move3 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,2 } });
-			bool move4 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,2 } });
-			bool move5 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,2 } });
-			bool move6 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,4 } });
-			bool move7 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,4 } });
-			bool move8 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,4 } });
-
+			bool move1 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,3 } }, Color::WHITE, board );
+			bool move2 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,3 } }, Color::WHITE, board );
+			bool move3 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,2 } }, Color::WHITE, board );
+			bool move4 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,2 } }, Color::WHITE, board );
+			bool move5 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,2 } }, Color::WHITE, board );
+			bool move6 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 2,4 } }, Color::WHITE, board );
+			bool move7 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 3,4 } }, Color::WHITE, board );
+			bool move8 = game.isValidMove(Move{ Position{ 3,3 }, Position{ 4,4 } }, Color::WHITE, board );
+																								
 			// Assert
 
 			// Attack queen

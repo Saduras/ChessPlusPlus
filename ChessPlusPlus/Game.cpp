@@ -150,22 +150,21 @@ bool Game::isCheck(Color playerColor)
 
 bool Game::isCheckmate(Color playerColor)
 {
-	bool result = false;
-	bool isCheck = this->isCheck(playerColor);
+	auto moves = getValidMoves(playerColor, getBoard());
 
-	if (isCheck)
-	{
-		auto moves = board.getAllMovesFor(playerColor);
-		bool hasValidMove = false;
-		for (auto move : moves)
-		{
-			Board *prediction = board.testMove(move);
-			hasValidMove |= !isCheck_internal(playerColor, prediction);
-			delete prediction;
-		}
+	std::cout << "Moves: " + std::to_string(moves.size()) << std::endl;
 
-		result = isCheck && !hasValidMove;
-	}
+	return moves.size() == 0;
+}
 
-	return result;
+std::vector<Move> Game::getValidMoves(Color player, Board* board)
+{
+	auto movesSet = board->getAllMovesFor(player);
+
+	std::vector<Move> movesVector{};
+	for (auto move = movesSet.begin(); move != movesSet.end(); move++)
+		if (this->isValidMove(*move, player, board))
+			movesVector.push_back(*move);
+
+	return movesVector;
 }

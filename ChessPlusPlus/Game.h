@@ -44,6 +44,8 @@ public:
 	bool isCheck(Color playerColor);
 	bool isCheckmate(Color playerColor);
 
+	std::vector<Move> getValidMoves(Color player, Board* board);
+
 private:
 	int moveDelayInMs{ 0 };
 	GameState state{ GameState::UNSTARTED };
