@@ -131,5 +131,8 @@
     <ClCompile Include="ThreatTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\ChessPlusPlus\HumanAgent.cpp">
+      <Filter>Source Files\Main Project</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
