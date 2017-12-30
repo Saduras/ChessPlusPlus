@@ -48,7 +48,7 @@ namespace ChessPlusPlusTests
 			delete board;
 		}
 
-		TEST_METHOD(MiniMaxBlcvkEvalBoardTest)
+		TEST_METHOD(MiniMaxBlackEvalBoardTest)
 		{
 			// Arrange
 			Board *board = new Board{};
@@ -75,12 +75,12 @@ namespace ChessPlusPlusTests
 			int score6 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			// Assert
-			Assert::AreEqual(50, score1);
-			Assert::AreEqual(50 + 30, score2);
-			Assert::AreEqual(50 + 30 + 30, score3);
-			Assert::AreEqual(50 + 30 + 30 + 90, score4);
-			Assert::AreEqual(50 + 30 + 30 + 90 + 900, score5);
-			Assert::AreEqual(50 + 30 + 30 + 90, score6);
+			Assert::AreEqual(-50, score1);
+			Assert::AreEqual(-50 - 30, score2);
+			Assert::AreEqual(-50 - 30 - 30, score3);
+			Assert::AreEqual(-50 - 30 - 30 - 90, score4);
+			Assert::AreEqual(-50 - 30 - 30 - 90 - 900, score5);
+			Assert::AreEqual(-50 - 30 - 30 - 90, score6);
 
 			delete board;
 		}
