@@ -38,6 +38,8 @@ std::future<Move> MiniMaxAgent::nextTurn()
 
 int MiniMaxAgent::evalBoard(Board* board)
 {
+	int colorFactor = color == Color::WHITE ? 1 : -1;
+
 	int score = 0;
 	for (int x = 0; x < 8; x++)
 	{
@@ -49,7 +51,7 @@ int MiniMaxAgent::evalBoard(Board* board)
 		}
 	}
 
-	return score;
+	return score * colorFactor;
 }
 
 SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, bool isMaximisingPlayer, Board* board, int alpha, int beta)
