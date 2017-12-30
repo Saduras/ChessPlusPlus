@@ -3,6 +3,7 @@
 #include <map>
 #include <iostream>
 #include <algorithm>
+#include <chrono>
 
 std::map<std::string, int> scoreMap{
 	{ "K", 900 }, { "k", -900 },
@@ -47,7 +48,7 @@ int MiniMaxAgent::evalBoard(Board* board)
 	return score;
 }
 
-SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, bool isMaximisingPlayer, Board* board)
+SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, bool isMaximisingPlayer, Board* board, int alpha, int beta)
 {
 	if (searchDepth == 0)
 		return SearchResult{ evalBoard(board), Move{Position{-1,-1},Position{-1,1} } };
@@ -65,7 +66,7 @@ SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, b
 		for (int i = 0; i < moves.size(); i++)
 		{
 			auto prediction = board->testMove(moves[i]);
-			int moveScore = miniMaxSearch(searchDepth, nextPlayer, false, prediction).score;
+			int moveScore = miniMaxSearch(searchDepth, nextPlayer, false, prediction, alpha, beta).score;
 			delete prediction;
 
 			if (bestScore < moveScore)
@@ -73,6 +74,10 @@ SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, b
 				bestScore = moveScore;
 				bestMove = moves[i];
 			}
+
+			alpha = std::max(bestScore, alpha);
+			if (beta <= alpha)
+				return SearchResult{ bestScore, bestMove };
 		}
 		return SearchResult{ bestScore, bestMove };
 	}
@@ -83,7 +88,7 @@ SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, b
 		for (int i = 0; i < moves.size(); i++)
 		{
 			auto prediction = board->testMove(moves[i]);
-			int moveScore = miniMaxSearch(searchDepth, nextPlayer, true, prediction).score;
+			int moveScore = miniMaxSearch(searchDepth, nextPlayer, true, prediction, alpha, beta).score;
 			delete prediction;
 
 			if (bestScore > moveScore)
@@ -91,6 +96,10 @@ SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, b
 				bestScore = moveScore;
 				bestMove = moves[i];
 			}
+
+			beta = std::min(bestScore, beta);
+			if (beta <= alpha)
+				return SearchResult{ bestScore, bestMove };
 		}
 		return SearchResult{ bestScore, bestMove };
 	}
