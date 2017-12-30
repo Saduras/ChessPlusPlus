@@ -1,5 +1,6 @@
 #pragma once
 #include "Agent.h"
+#include <random>
 
 struct SearchResult
 {
@@ -18,4 +19,5 @@ public:
 
 private:
 	int searchDepth;
+	std::mt19937 generator;
 };

@@ -17,6 +17,10 @@ std::map<std::string, int> scoreMap{
 MiniMaxAgent::MiniMaxAgent(int searchDepth)
 {
 	this->searchDepth = searchDepth;
+
+	std::random_device r;
+	std::seed_seq seed{ r(), r(), r(), r(), r(), r(), r(), r() };
+	generator = std::mt19937{ seed };
 }
 
 std::future<Move> MiniMaxAgent::nextTurn()
@@ -54,7 +58,7 @@ SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, b
 		return SearchResult{ evalBoard(board), Move{Position{-1,-1},Position{-1,1} } };
 
 	auto moves = game->getValidMoves(currentPlayer, board);
-	std::random_shuffle(moves.begin(), moves.end());
+	std::shuffle(moves.begin(), moves.end(), generator);
 
 	searchDepth--;
 	auto nextPlayer = (currentPlayer == Color::WHITE) ? Color::BLACK : Color::WHITE;
