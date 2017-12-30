@@ -14,30 +14,28 @@ namespace ChessPlusPlusTests
 		TEST_METHOD(MiniMaxWhiteEvalBoardTest)
 		{
 			// Arrange
-			auto *agent = new MiniMaxAgent{ 99 };
-			Game game{ agent, new MiniMaxAgent{ 99 } };
-			agent->setup(Color::WHITE, &game);
-			auto board = game.getBoard();
+			Board *board = new Board{};
 			board->clear();
+			auto color = Color::WHITE;
 
 			// Act
 			board->placePieceAt(new Rook{ Color::WHITE }, Position{ 0,0 });
-			int score1 = agent->pieceValueEvalBoard(board);
+			int score1 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new Knight{ Color::WHITE }, Position{ 1,0 });
-			int score2 = agent->pieceValueEvalBoard(board);
+			int score2 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new Bishop{ Color::WHITE }, Position{ 2,0 });
-			int score3 = agent->pieceValueEvalBoard(board);
+			int score3 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new Queen{ Color::WHITE }, Position{ 3,0 });
-			int score4 = agent->pieceValueEvalBoard(board);
+			int score4 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new King{ Color::WHITE }, Position{ 4,0 });
-			int score5 = agent->pieceValueEvalBoard(board);
+			int score5 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new King{ Color::BLACK }, Position{ 4,7 });
-			int score6 = agent->pieceValueEvalBoard(board);
+			int score6 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			// Assert
 			Assert::AreEqual(50, score1);
@@ -46,50 +44,52 @@ namespace ChessPlusPlusTests
 			Assert::AreEqual(50 + 30 + 30 + 90, score4);
 			Assert::AreEqual(50 + 30 + 30 + 90 + 900, score5);
 			Assert::AreEqual(50 + 30 + 30 + 90, score6);
+
+			delete board;
 		}
 
-		TEST_METHOD(MiniMaxBlackEvalBoardTest)
+		TEST_METHOD(MiniMaxBlcvkEvalBoardTest)
 		{
 			// Arrange
-			auto *agent = new MiniMaxAgent{ 99 };
-			Game game{ agent, new MiniMaxAgent{ 99 } };
-			agent->setup(Color::BLACK, &game);
-			auto board = game.getBoard();
+			Board *board = new Board{};
 			board->clear();
+			auto color = Color::BLACK;
 
 			// Act
 			board->placePieceAt(new Rook{ Color::WHITE }, Position{ 0,0 });
-			int score1 = agent->pieceValueEvalBoard(board);
+			int score1 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new Knight{ Color::WHITE }, Position{ 1,0 });
-			int score2 = agent->pieceValueEvalBoard(board);
+			int score2 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new Bishop{ Color::WHITE }, Position{ 2,0 });
-			int score3 = agent->pieceValueEvalBoard(board);
+			int score3 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new Queen{ Color::WHITE }, Position{ 3,0 });
-			int score4 = agent->pieceValueEvalBoard(board);
+			int score4 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new King{ Color::WHITE }, Position{ 4,0 });
-			int score5 = agent->pieceValueEvalBoard(board);
+			int score5 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			board->placePieceAt(new King{ Color::BLACK }, Position{ 4,7 });
-			int score6 = agent->pieceValueEvalBoard(board);
+			int score6 = MiniMaxAgent::pieceValueEvalBoard(board, color);
 
 			// Assert
-			Assert::AreEqual(-50, score1);
-			Assert::AreEqual(-50 - 30, score2);
-			Assert::AreEqual(-50 - 30 - 30, score3);
-			Assert::AreEqual(-50 - 30 - 30 - 90, score4);
-			Assert::AreEqual(-50 - 30 - 30 - 90 - 900, score5);
-			Assert::AreEqual(-50 - 30 - 30 - 90, score6);
+			Assert::AreEqual(50, score1);
+			Assert::AreEqual(50 + 30, score2);
+			Assert::AreEqual(50 + 30 + 30, score3);
+			Assert::AreEqual(50 + 30 + 30 + 90, score4);
+			Assert::AreEqual(50 + 30 + 30 + 90 + 900, score5);
+			Assert::AreEqual(50 + 30 + 30 + 90, score6);
+
+			delete board;
 		}
 
 		TEST_METHOD(MiniMaxSearchTest)
 		{
 			// Arrange
-			auto *agent = new MiniMaxAgent{ 99 };
-			Game game{ agent, new MiniMaxAgent{ 99 } };
+			auto *agent = new MiniMaxAgent{ 99, MiniMaxAgent::pieceValueEvalBoard };
+			Game game{ agent, new MiniMaxAgent{ 99, MiniMaxAgent::pieceValueEvalBoard } };
 			agent->setup(Color::WHITE, &game);
 			auto board = game.getBoard();
 			board->clear();
