@@ -52,8 +52,9 @@ std::vector<Position> Pawn::getMovesFor(Position pos, Board &board)
 		moves.push_back(newPos);
 
 	// start move
+	auto pathPos = pos + moveDir;
 	newPos = pos + moveDir + moveDir;
-	if (pos.y == startY && Position::isOnBoard(newPos) && !board.getPieceAt(newPos))
+	if (pos.y == startY && Position::isOnBoard(newPos) && !board.getPieceAt(pathPos) && !board.getPieceAt(newPos))
 		moves.push_back(newPos);
 	
 	// attack moves

@@ -108,6 +108,55 @@ namespace ChessPlusPlusTests
 			});
 		}
 
+		TEST_METHOD(PawnWhiteStartPosBlockedTest)
+		{
+			// Arrange
+			Board board{};
+			Pawn *piece = new Pawn{ Color::WHITE };
+			board.placePieceAt(piece, Position{ 3,1 });
+			board.placePieceAt(new Pawn{ Color::BLACK }, Position{ 3,2 });
+
+			// Act
+			auto validPositions = piece->getMovesFor(Position{ 3,1 }, board);
+
+			// Assert
+			TestUtils::AssertPositions(validPositions, {
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+			});
+		}
+
+		TEST_METHOD(PawnBlackStartPosBlockedTest)
+		{
+			// Arrange
+			Board board{};
+			Pawn *piece = new Pawn{ Color::BLACK };
+			Position pos{ 3,6 };
+			board.placePieceAt(piece, pos);
+			board.placePieceAt(new Pawn{ Color::WHITE }, Position{ 3,5 });
+
+			// Act
+			auto validPositions = piece->getMovesFor(pos, board);
+
+			// Assert
+			TestUtils::AssertPositions(validPositions, {
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,
+			});
+		}
+
 		TEST_METHOD(PawnWhiteCornerTest)
 		{
 			// Arrange
