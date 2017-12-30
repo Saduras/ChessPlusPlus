@@ -22,22 +22,22 @@ namespace ChessPlusPlusTests
 
 			// Act
 			board->placePieceAt(new Rook{ Color::WHITE }, Position{ 0,0 });
-			int score1 = agent->evalBoard(board);
+			int score1 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new Knight{ Color::WHITE }, Position{ 1,0 });
-			int score2 = agent->evalBoard(board);
+			int score2 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new Bishop{ Color::WHITE }, Position{ 2,0 });
-			int score3 = agent->evalBoard(board);
+			int score3 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new Queen{ Color::WHITE }, Position{ 3,0 });
-			int score4 = agent->evalBoard(board);
+			int score4 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new King{ Color::WHITE }, Position{ 4,0 });
-			int score5 = agent->evalBoard(board);
+			int score5 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new King{ Color::BLACK }, Position{ 4,7 });
-			int score6 = agent->evalBoard(board);
+			int score6 = agent->pieceValueEvalBoard(board);
 
 			// Assert
 			Assert::AreEqual(50, score1);
@@ -59,22 +59,22 @@ namespace ChessPlusPlusTests
 
 			// Act
 			board->placePieceAt(new Rook{ Color::WHITE }, Position{ 0,0 });
-			int score1 = agent->evalBoard(board);
+			int score1 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new Knight{ Color::WHITE }, Position{ 1,0 });
-			int score2 = agent->evalBoard(board);
+			int score2 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new Bishop{ Color::WHITE }, Position{ 2,0 });
-			int score3 = agent->evalBoard(board);
+			int score3 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new Queen{ Color::WHITE }, Position{ 3,0 });
-			int score4 = agent->evalBoard(board);
+			int score4 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new King{ Color::WHITE }, Position{ 4,0 });
-			int score5 = agent->evalBoard(board);
+			int score5 = agent->pieceValueEvalBoard(board);
 
 			board->placePieceAt(new King{ Color::BLACK }, Position{ 4,7 });
-			int score6 = agent->evalBoard(board);
+			int score6 = agent->pieceValueEvalBoard(board);
 
 			// Assert
 			Assert::AreEqual(-50, score1);

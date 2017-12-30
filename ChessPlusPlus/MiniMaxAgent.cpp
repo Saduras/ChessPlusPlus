@@ -14,9 +14,10 @@ std::map<std::string, int> scoreMap{
 	{ "P", 10 },  { "p", -10 },
 };
 
-MiniMaxAgent::MiniMaxAgent(int searchDepth)
+MiniMaxAgent::MiniMaxAgent(int searchDepth, std::function<int(Board*, Color)> evalFunc)
 {
 	this->searchDepth = searchDepth;
+	this->evalFunc = evalFunc;
 
 	std::random_device r;
 	std::seed_seq seed{ r(), r(), r(), r(), r(), r(), r(), r() };
@@ -36,7 +37,7 @@ std::future<Move> MiniMaxAgent::nextTurn()
 	return promise.get_future();
 }
 
-int MiniMaxAgent::evalBoard(Board* board)
+int MiniMaxAgent::pieceValueEvalBoard(Board* board, Color color)
 {
 	int colorFactor = color == Color::WHITE ? 1 : -1;
 
@@ -57,7 +58,7 @@ int MiniMaxAgent::evalBoard(Board* board)
 SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, bool isMaximisingPlayer, Board* board, int alpha, int beta)
 {
 	if (searchDepth == 0)
-		return SearchResult{ evalBoard(board), Move{Position{-1,-1},Position{-1,1} } };
+		return SearchResult{ evalFunc(board, color), Move{Position{-1,-1},Position{-1,1} } };
 
 	auto moves = game->getValidMoves(currentPlayer, board);
 	std::shuffle(moves.begin(), moves.end(), generator);
