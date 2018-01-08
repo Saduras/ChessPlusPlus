@@ -137,9 +137,6 @@
     <ClCompile Include="MiniMaxAgentTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ChessPlusPlus\Agent.cpp">
-      <Filter>Source Files\Main Project</Filter>
-    </ClCompile>
     <ClCompile Include="..\ChessPlusPlus\MiniMaxAgent.cpp">
       <Filter>Source Files\Main Project</Filter>
     </ClCompile>

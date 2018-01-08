@@ -10,13 +10,8 @@ RandomAgent::RandomAgent()
 	generator = std::mt19937{ seed };
 }
 
-std::future<Move> RandomAgent::nextTurn()
+void RandomAgent::selectMove(Board* board, std::vector<Move> moves)
 {
-	promise = std::promise<Move>{};
-	
-	auto moves = game->getValidMoves(color, game->getBoard());
 	std::shuffle(moves.begin(), moves.end(), generator);
-
-	promise.set_value(moves[0]);
-	return promise.get_future();
+	game->doMove(moves[0]);
 }

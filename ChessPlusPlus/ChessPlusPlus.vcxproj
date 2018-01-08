@@ -179,7 +179,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Agent.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="ChessPlusPlus.cpp" />
     <ClCompile Include="ChessWindowView.cpp" />

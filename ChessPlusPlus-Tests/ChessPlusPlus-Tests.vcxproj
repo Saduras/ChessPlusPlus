@@ -173,7 +173,6 @@
     <ClInclude Include="TestUtils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\ChessPlusPlus\Agent.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Board.cpp" />
     <ClCompile Include="..\ChessPlusPlus\Game.cpp" />
     <ClCompile Include="..\ChessPlusPlus\HumanAgent.cpp" />

@@ -28,21 +28,8 @@ void Game::start()
 	board.setupWithDefault();
 
 	currentPlayer = Color::WHITE;
-
-	thread = std::thread([this]() 
-	{	
-		while (this && this->isRunning())
-		{
-			auto future = this->getCurrentAgent()->nextTurn();
-			if(future.valid())
-				future.wait();
-
-			std::this_thread::sleep_for(std::chrono::milliseconds(this->getMoveDelay()));
-
-			if (future.valid())
-				this->doMove(future.get());
-		}
-	});
+	
+	getCurrentAgent()->selectMove(getBoard(), getValidMoves(currentPlayer, &board));
 }
 
 void Game::restart()
@@ -56,14 +43,13 @@ void Game::stop()
 	board.clear();
 	state = GameState::UNSTARTED;
 	system("cls");
-	thread.join();
 }
 
 bool Game::isRunning()
 {
-	return this ->getState() == GameState::ONGOING 
-		|| this ->getState() == GameState::CHECK_WHITE 
-		|| this ->getState() == GameState::CHECK_BLACK;
+	return this->getState() == GameState::ONGOING 
+		|| this->getState() == GameState::CHECK_WHITE 
+		|| this->getState() == GameState::CHECK_BLACK;
 }
 
 bool Game::isValidMove(Move move, Color playerColor, Board *board)
@@ -91,7 +77,10 @@ bool Game::doMove(Move move)
 		return false;
 
 	if (!isValidMove(move, currentPlayer, &board))
+	{
+		getCurrentAgent()->selectMove(getBoard(), getValidMoves(currentPlayer, &board));
 		return false;
+	}
 
 	Piece *toRemove = board.getPieceAt(move.to);
 	if (toRemove)
@@ -114,6 +103,10 @@ bool Game::doMove(Move move)
 		state = (currentPlayer == Color::WHITE) ? GameState::CHECKMATE_WHITE : GameState::CHECKMATE_BLACK;
 		std::cout << ((currentPlayer == Color::WHITE) ? "Black wins!" : "White wins!") << std::endl;
 		std::cout << "Press enter to restart game." << std::endl;
+	}
+	else
+	{
+		getCurrentAgent()->selectMove(getBoard(), getValidMoves(currentPlayer, &board));
 	}
 	return true;
 }

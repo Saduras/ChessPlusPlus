@@ -137,9 +137,6 @@
     <ClCompile Include="HumanAgent.cpp">
       <Filter>Source Files\Agents</Filter>
     </ClCompile>
-    <ClCompile Include="Agent.cpp">
-      <Filter>Source Files\Agents</Filter>
-    </ClCompile>
     <ClCompile Include="MiniMaxAgent.cpp">
       <Filter>Source Files\Agents</Filter>
     </ClCompile>

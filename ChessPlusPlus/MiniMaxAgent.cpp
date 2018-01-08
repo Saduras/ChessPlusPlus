@@ -24,17 +24,13 @@ MiniMaxAgent::MiniMaxAgent(int searchDepth, std::function<int(Board*, Color)> ev
 	generator = std::mt19937{ seed };
 }
 
-std::future<Move> MiniMaxAgent::nextTurn()
+void MiniMaxAgent::selectMove(Board* board, std::vector<Move> moves)
 {
-	promise = std::promise<Move>();
-
-	auto board = game->getBoard();
 	auto result = miniMaxSearch(searchDepth, color, true, board);
 
 	std::cout << Move::toString(result.move) + " -> " + std::to_string(result.score) << std::endl;
 
-	promise.set_value(result.move);
-	return promise.get_future();
+	game->doMove(result.move);
 }
 
 int MiniMaxAgent::pieceValueEvalBoard(Board* board, Color color)

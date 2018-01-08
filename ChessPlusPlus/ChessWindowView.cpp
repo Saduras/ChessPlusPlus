@@ -112,7 +112,7 @@ void ChessWindowView::handleEvent(Event event)
 				dragSprite->setPosition(dragStart);
 				dragSprite = nullptr;
 
-				humanAgent->setMove(Move{ from, to });
+				humanAgent->chooseMove(Move{ from, to });
 			}
 		}
 

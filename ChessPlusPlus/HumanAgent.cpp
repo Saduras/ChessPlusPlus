@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "HumanAgent.h"
 
-std::future<Move> HumanAgent::nextTurn()
+void HumanAgent::selectMove(Board* board, std::vector<Move> moves)
 {
 	// wait for move to be selected
-	promise = std::promise<Move>();
-	return promise.get_future();;
+}
+
+void HumanAgent::chooseMove(Move move)
+{
+	game->doMove(move);
 }

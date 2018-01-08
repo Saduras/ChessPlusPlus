@@ -7,7 +7,7 @@ class RandomAgent : public Agent
 public:
 	RandomAgent();
 
-	std::future<Move> nextTurn();
+	void selectMove(Board* board, std::vector<Move> moves);
 
 private:
 	std::mt19937 generator;

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <functional>
-#include <thread>
 #include "Board.h"
 #include "Piece.h"
 #include "Agent.h"
@@ -49,7 +48,6 @@ public:
 private:
 	int moveDelayInMs{ 0 };
 	GameState state{ GameState::UNSTARTED };
-	std::thread thread;
 	Board board{};
 	Color currentPlayer;
 	Agent* whiteAgent;
