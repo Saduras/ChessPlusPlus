@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <chrono>
+#include <thread>
 
 std::map<std::string, int> scoreMap{
 	{ "K", 900 }, { "k", -900 },
@@ -26,10 +27,17 @@ MiniMaxAgent::MiniMaxAgent(int searchDepth, std::function<int(Board*, Color)> ev
 
 void MiniMaxAgent::selectMove(Board* board, std::vector<Move> moves)
 {
-	auto result = miniMaxSearch(searchDepth, color, true, board);
+	std::thread thread([this, board, moves]() 
+	{
+		auto result = this->miniMaxSearch(this->searchDepth, this->color, true, board);
+		this->handleResult(result);
+	});
+	thread.detach();
+}
 
+void MiniMaxAgent::handleResult(SearchResult result)
+{
 	std::cout << Move::toString(result.move) + " -> " + std::to_string(result.score) << std::endl;
-
 	game->doMove(result.move);
 }
 

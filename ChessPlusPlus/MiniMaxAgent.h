@@ -22,4 +22,6 @@ private:
 	int searchDepth;
 	std::function<int(Board*, Color)> evalFunc;
 	std::mt19937 generator;
+
+	void MiniMaxAgent::handleResult(SearchResult result);
 };
