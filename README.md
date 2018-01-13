@@ -2,6 +2,8 @@
 
 A simple chess game including it's own chess engine and AI.
 
+[Latest release](https://github.com/Saduras/ChessPlusPlus/releases/tag/v1.2)
+
 ## Features
 - Simple window view with drag'n'drop interaction
 - Move generation
