@@ -10,6 +10,7 @@ A simple chess game including it's own chess engine and AI.
   - Human player
   - Random move AI
   - MiniMax AI with alpha-beta-pruning
+- Unit test suit for the chess engine
 
 ## Develop environment
 - Windows 10
