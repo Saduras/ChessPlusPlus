@@ -74,7 +74,7 @@ SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, b
 	{
 		int bestScore = -9000;
 		Move bestMove{};
-		for (int i = 0; i < moves.size(); i++)
+		for (size_t i = 0; i < moves.size(); i++)
 		{
 			auto prediction = board->testMove(moves[i]);
 			int moveScore = miniMaxSearch(searchDepth, nextPlayer, false, prediction, alpha, beta).score;
@@ -96,7 +96,7 @@ SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, b
 	{
 		int bestScore = 9000;
 		Move bestMove{};
-		for (int i = 0; i < moves.size(); i++)
+		for (size_t i = 0; i < moves.size(); i++)
 		{
 			auto prediction = board->testMove(moves[i]);
 			int moveScore = miniMaxSearch(searchDepth, nextPlayer, true, prediction, alpha, beta).score;

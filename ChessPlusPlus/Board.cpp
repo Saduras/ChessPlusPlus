@@ -110,7 +110,7 @@ Board* Board::testMove(Move move)
 {
 	Board *copy = new Board{};
 
-	for (int i = 0; i < copy->fields.size(); i++)
+	for (size_t i = 0; i < copy->fields.size(); i++)
 	{
 		if (this->fields[i])
 			copy->fields[i] = this->fields[i]->clone();

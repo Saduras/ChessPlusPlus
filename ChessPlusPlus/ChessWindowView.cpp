@@ -54,7 +54,8 @@ void ChessWindowView::initSprites()
 			{
 				Sprite s{ pieceTexture };
 				s.setTextureRect(spriteMap[piece->toShortString()]);
-				s.setPosition(x * pieceSize, 700 - y * pieceSize);
+				s.setPosition(static_cast<float>(x * pieceSize), 
+					static_cast<float>(700 - y * pieceSize));
 				pieceSprites[piece] = s;
 			}
 		}
@@ -89,12 +90,12 @@ void ChessWindowView::handleEvent(Event event)
 				for (const auto& pair : pieceSprites)
 				{
 					auto sprite = pieceSprites[pair.first];
-					if (sprite.getGlobalBounds().contains(mousePos.x, mousePos.y))
+					if (sprite.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y)))
 					{
 						dragSprite = &pieceSprites[pair.first];
 						dragStart = dragSprite->getPosition();
-						dx = mousePos.x - dragStart.x;
-						dy = mousePos.y - dragStart.y;
+						dx = mousePos.x - static_cast<int>(dragStart.x);
+						dy = mousePos.y - static_cast<int>(dragStart.y);
 					}
 				}
 
@@ -117,7 +118,8 @@ void ChessWindowView::handleEvent(Event event)
 		}
 
 		if (dragSprite)
-			dragSprite->setPosition(mousePos.x - dx, mousePos.y - dy);
+			dragSprite->setPosition(static_cast<float>(mousePos.x - dx), 
+				static_cast<float>(mousePos.y - dy));
 	}
 }
 
@@ -164,5 +166,7 @@ void ChessWindowView::onRemovePiece(Piece *removedPiece)
 void ChessWindowView::onMovePiece(Piece* movedPiece, Position newPos)
 {
 	if(pieceSprites.count(movedPiece))
-		pieceSprites[movedPiece].setPosition(newPos.x * pieceSize, 700 - newPos.y * pieceSize);
+		pieceSprites[movedPiece].setPosition(
+			static_cast<float>(newPos.x * pieceSize), 
+			static_cast<float>(700 - newPos.y * pieceSize));
 }

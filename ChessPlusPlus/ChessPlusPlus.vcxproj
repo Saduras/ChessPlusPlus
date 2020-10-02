@@ -72,22 +72,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\Documents\Projects\ChessPlusPlus\ChessPlusPlus;D:\Documents\Projects\ChessPlusPlus\ChessPlusPlus\Pieces</IncludePath>
-    <IntDir>$(SolutionDir)$(Platform)\intermediate\$(Configuration)</IntDir>
+    <IntDir>$(SolutionDir)$(Platform)\intermediate\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>$(SolutionDir)$(Platform)\intermediate\$(Configuration)</IntDir>
+    <IntDir>$(SolutionDir)$(Platform)\intermediate\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\Documents\Projects\ChessPlusPlus\ChessPlusPlus;D:\Documents\Projects\ChessPlusPlus\ChessPlusPlus\Pieces</IncludePath>
-    <IntDir>$(SolutionDir)$(Platform)\intermediate\$(Configuration)</IntDir>
+    <IntDir>$(SolutionDir)$(Platform)\intermediate\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)$(Platform)\intermediate\$(Configuration)</IntDir>
+    <IntDir>$(SolutionDir)$(Platform)\intermediate\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
