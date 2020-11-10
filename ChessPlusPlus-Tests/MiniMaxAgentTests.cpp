@@ -108,5 +108,29 @@ namespace ChessPlusPlusTests
 			Assert::AreEqual(0, score3);
 			Assert::AreEqual(10, score4);
 		}
+
+		TEST_METHOD(MiniMaxSearchAsyncTest)
+		{
+			// Arrange
+			auto* agent = new MiniMaxAgent{ 99, MiniMaxAgent::pieceValueEvalBoard };
+			Game game{ agent, new MiniMaxAgent{ 99, MiniMaxAgent::pieceValueEvalBoard } };
+			agent->setup(Color::WHITE, &game);
+			auto board = game.getBoard();
+			board->clear();
+			board->placePieceAt(new Pawn(Color::WHITE), Position{ 1, 1 });
+			board->placePieceAt(new Pawn(Color::BLACK), Position{ 0, 4 });
+
+			// Act
+			int score1 = agent->miniMaxSearch_async(0, Color::WHITE, true, board).score;
+			int score2 = agent->miniMaxSearch_async(1, Color::WHITE, true, board).score;
+			int score3 = agent->miniMaxSearch_async(2, Color::WHITE, true, board).score;
+			int score4 = agent->miniMaxSearch_async(3, Color::WHITE, true, board).score;
+
+			// Assert
+			Assert::AreEqual(0, score1);
+			Assert::AreEqual(0, score2);
+			Assert::AreEqual(0, score3);
+			Assert::AreEqual(10, score4);
+		}
 	};
 }

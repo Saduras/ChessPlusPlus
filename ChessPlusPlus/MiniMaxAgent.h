@@ -16,6 +16,7 @@ public:
 	void selectMove(Board* board, std::vector<Move> moves);
 
 	static int pieceValueEvalBoard(Board* board, Color color);
+	SearchResult miniMaxSearch_async(int searchDepth, Color currentPlayer, bool isMaximisingPlayer, Board* board);
 	SearchResult miniMaxSearch(int searchDepth, Color currentPlayer, bool isMaximisingPlayer, Board *board, int alpha = -10000, int beta = 10000);
 
 private:
