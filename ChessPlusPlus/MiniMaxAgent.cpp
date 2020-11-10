@@ -26,12 +26,41 @@ MiniMaxAgent::MiniMaxAgent(int searchDepth, std::function<int(Board*, Color)> ev
 	generator = std::mt19937{ seed };
 }
 
+#include <chrono>
+
+class Timer
+{
+private:
+	std::chrono::steady_clock::time_point start;
+	std::string message;
+public:
+	Timer(const std::string& message)
+		: message(message)
+	{
+		start = std::chrono::steady_clock::now();
+	}
+
+	~Timer()
+	{
+		auto end = std::chrono::steady_clock::now();
+		std::chrono::duration<double> elapsed_seconds = end - start;
+		std::cout << message << " elapsed time: " << elapsed_seconds.count() << "s\n";
+	}
+};
+
+int callCounter = 0;
+
 void MiniMaxAgent::selectMove(Board* board, std::vector<Move> moves)
 {
 	std::thread thread([this, board, moves]() 
 	{
-		auto result = this->miniMaxSearch_async(this->searchDepth, this->color, true, board);
+		Timer timer("Thinking time!");
+		callCounter = 0;
+
+		auto result = this->miniMaxSearch(this->searchDepth, this->color, true, board);
 		this->handleResult(result);
+
+		std::cout << "callCounter: " << callCounter << std::endl;
 	});
 	thread.detach();
 }
@@ -105,6 +134,8 @@ SearchResult MiniMaxAgent::miniMaxSearch_async(int searchDepth, Color currentPla
 
 SearchResult MiniMaxAgent::miniMaxSearch(int searchDepth, Color currentPlayer, bool isMaximisingPlayer, Board* board, int alpha, int beta)
 {
+	callCounter++;
+
 	if (searchDepth == 0)
 		return SearchResult{ evalFunc(board, color), Move{Position{-1,-1}, Position{-1,1} } };
 

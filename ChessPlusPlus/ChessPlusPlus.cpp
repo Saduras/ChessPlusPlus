@@ -11,7 +11,11 @@
 
 int main()
 {
-	Game game{ new HumanAgent{}, new MiniMaxAgent{ 4, MiniMaxAgent::pieceValueEvalBoard }, 0 };
+	Game game{ 
+		new MiniMaxAgent{ 4, MiniMaxAgent::pieceValueEvalBoard }, 
+		new MiniMaxAgent{ 4, MiniMaxAgent::pieceValueEvalBoard }, 
+		0 // delay in ms
+	};
 	game.start();
 
 	ChessWindowView view{ &game };
